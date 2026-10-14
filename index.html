@@ -1,0 +1,967 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SafeAICompass</title>
+<meta name="description" content="A bilingual (English/Arabic) AI-literacy guide for university students: productive AI use, deepfakes, phishing, privacy and academic integrity. Made by Razi Moayed Money and Lujain Saad ALdayel (Mawhiba MetaMinds M3).">
+<meta name="author" content="Razi Moayed Money, Lujain Saad ALdayel">
+<meta name="theme-color" content="#0E1C33">
+<meta property="og:type" content="website">
+<meta property="og:title" content="SafeAICompass">
+<meta property="og:description" content="A bilingual (English/Arabic) AI-literacy guide for university students: productive AI use, deepfakes, phishing, privacy and academic integrity. Made by Razi Moayed Money and Lujain Saad ALdayel (Mawhiba MetaMinds M3).">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='10.5' fill='%230E1C33' stroke='%23E2B456' stroke-width='1.8'/%3E%3Cpath d='M12 3.6 14.4 12H9.6Z' fill='%23D9472F'/%3E%3Cpath d='M12 20.4 9.6 12h4.8Z' fill='%23E2B456'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&family=Public+Sans:wght@400;500;600;700&family=Noto+Naskh+Arabic:wght@600;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Night-navigation guide: a navy chart-room hero with a brass compass, then a margin column of headings beside the working content. Brass marks the brand, red marks risk, green/amber/red only mean status. */
+:root{
+  --paper:#FFFFFF; --sheet:#FFFFFF; --wash:#F2F4F8; --ink:#111A2C; --soft:#4D5872; --rule:#E1E5ED;
+  --navy:#13213A; --brass:#8A6413; --needle:#D9472F;
+  --go:#1E7A4C; --ask:#9A6400; --stop:#BF3529;
+  --h-bg:#0E1C33; --h-ink:#F3EFE4; --h-soft:#AEB8CC; --h-line:rgba(226,180,86,.22); --h-brass:#E2B456; --h-face:#132744;
+  --serif:"Source Serif 4", Georgia, "Times New Roman", serif;
+  --sans:"Public Sans", "Segoe UI", system-ui, sans-serif;
+  --mono:"IBM Plex Mono", ui-monospace, Consolas, monospace;
+  --r:4px;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --paper:#0A1220; --sheet:#101A2D; --wash:#152139; --ink:#E9EDF5; --soft:#9AA6BE; --rule:#22304B;
+  --navy:#E9EDF5; --brass:#E2B456; --needle:#FF7558; --go:#5BD08F; --ask:#F0B54A; --stop:#FF8A7E;
+  --h-bg:#060D19; --h-face:#0F1E36; color-scheme:dark }}
+:root[data-theme="dark"]{
+  --paper:#0A1220; --sheet:#101A2D; --wash:#152139; --ink:#E9EDF5; --soft:#9AA6BE; --rule:#22304B;
+  --navy:#E9EDF5; --brass:#E2B456; --needle:#FF7558; --go:#5BD08F; --ask:#F0B54A; --stop:#FF8A7E;
+  --h-bg:#060D19; --h-face:#0F1E36; color-scheme:dark }
+html[dir="rtl"]{
+  --serif:"Noto Naskh Arabic", "Traditional Arabic", serif;
+  --sans:"IBM Plex Sans Arabic", "Segoe UI", Tahoma, sans-serif;
+  --mono:"IBM Plex Sans Arabic", "Segoe UI", Tahoma, sans-serif;
+}
+
+*{box-sizing:border-box}
+body{margin:0}
+[hidden]{display:none!important}
+img{max-width:100%}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:1rem;line-height:1.6;padding-inline:16px;-webkit-font-smoothing:antialiased}
+html[dir="rtl"] body{line-height:1.85}
+.page{max-width:68rem;margin-inline:auto}
+h1,h2,h3{font-family:var(--serif);font-weight:700;margin:0;text-wrap:balance}
+h2{font-size:clamp(1.55rem,2.6vw,2rem);line-height:1.15}
+h3{font-size:1.12rem;line-height:1.3}
+html[dir="rtl"] h1,html[dir="rtl"] h2,html[dir="rtl"] h3{line-height:1.55}
+p{margin:0}
+.muted{color:var(--soft)}
+a{color:inherit;text-decoration-color:var(--brass);text-decoration-thickness:1.5px;text-underline-offset:3px}
+a:hover{text-decoration-color:currentColor}
+:focus-visible{outline:2px solid var(--brass);outline-offset:3px}
+button{font:inherit;color:inherit}
+sup.ref{font-size:.68em;line-height:0;margin-inline-start:1px}
+sup.ref a{color:var(--brass);text-decoration:none;font-weight:700;font-family:"Public Sans",sans-serif;padding-inline:1px}
+sup.ref a:hover{text-decoration:underline}
+.skip{position:absolute;inset-inline-start:16px;top:-3rem;background:var(--ink);color:var(--paper);padding:.5rem .9rem;border-radius:var(--r);z-index:20}
+.skip:focus{top:.5rem}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto} *,*::before{animation:none!important;transition:none!important}}
+
+/* header */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--paper);margin-inline:-16px;padding-inline:16px;border-bottom:1px solid var(--rule)}
+.top-in{display:flex;align-items:center;gap:1.5rem;padding-block:.7rem}
+.mark{display:flex;align-items:center;gap:.55rem;text-decoration:none;font-family:"Source Serif 4",Georgia,serif;font-weight:700;font-size:1.12rem}
+.mark svg{width:24px;height:24px;flex:none}
+.nav{display:flex;gap:1.25rem;margin-inline-start:auto;overflow-x:auto;min-width:0;scrollbar-width:none}
+.nav a{color:var(--soft);text-decoration:none;font-size:.9rem;white-space:nowrap;padding-block:.35rem;border-bottom:2px solid transparent;transition:color .15s,border-color .15s}
+.nav a:hover{color:var(--ink)}
+.nav a[aria-current="true"]{color:var(--ink);border-bottom-color:var(--brass)}
+.switches{display:flex;gap:.25rem;flex:none}
+.switch{background:none;border:1px solid var(--rule);border-radius:var(--r);padding:.3rem .7rem;font-size:.85rem;cursor:pointer;min-height:2.1rem}
+.switch:hover{border-color:var(--ink)}
+.switch:active{transform:translateY(1px)}
+#langBtn{font-family:"IBM Plex Sans Arabic","Public Sans",sans-serif}
+@media (max-width:860px){.top-in{flex-wrap:wrap;row-gap:.25rem}.nav{order:3;flex-basis:100%;margin-inline-start:0}.switches{margin-inline-start:auto}}
+
+/* hero band */
+.band{background:var(--h-bg);color:var(--h-ink);margin-inline:-16px;padding-inline:16px;position:relative;overflow:hidden}
+.band::before{content:"";position:absolute;inset:0;background-image:linear-gradient(var(--h-line) 1px,transparent 1px),linear-gradient(90deg,var(--h-line) 1px,transparent 1px);background-size:72px 72px;opacity:.35;mask-image:linear-gradient(to bottom,#000 30%,transparent)}
+.hero{position:relative;display:grid;grid-template-columns:minmax(0,1.45fr) minmax(0,1fr);gap:3rem;align-items:center;padding-block:4.25rem 3.75rem}
+.hero h1{font-size:clamp(2.3rem,5.4vw,4.3rem);line-height:1.04;letter-spacing:-.018em;margin-block:.9rem 1.2rem}
+html[dir="rtl"] .hero h1{letter-spacing:0;line-height:1.45}
+.hero h1 span{color:var(--h-brass)}
+.kicker{font-size:.95rem;font-weight:600;color:var(--h-brass)}
+.lede{font-size:1.1rem;max-width:36rem;color:var(--h-soft)}
+.actions{display:flex;flex-wrap:wrap;align-items:center;gap:1.4rem;margin-top:2rem}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:2.9rem;padding-inline:1.3rem;border-radius:var(--r);border:1px solid var(--ink);background:var(--ink);color:var(--paper);text-decoration:none;font-weight:600;cursor:pointer;transition:background .15s,color .15s,border-color .15s}
+.btn:hover{background:var(--soft);border-color:var(--soft)}
+.btn:active{transform:translateY(1px)}
+.btn.quiet{background:none;color:var(--ink);border-color:var(--rule)}
+.btn.quiet:hover{border-color:var(--ink)}
+.btn:disabled{opacity:.35;cursor:not-allowed}
+.btn.brass{background:var(--h-brass);border-color:var(--h-brass);color:#0E1C33}
+.btn.brass:hover{background:#F0C873;border-color:#F0C873}
+.band .textlink{color:var(--h-ink);font-weight:600;text-decoration-color:var(--h-brass)}
+.targets{margin-top:1.8rem;font-size:.92rem;color:var(--h-soft);max-width:36rem;padding-top:1.2rem;border-top:1px solid var(--h-line)}
+.targets b{color:var(--h-ink);font-variant-numeric:tabular-nums}
+figure.dial{margin:0;display:grid;gap:.8rem;justify-items:center}
+.dial svg{width:100%;max-width:19rem;height:auto}
+.dial figcaption{font-size:.88rem;color:var(--h-soft);text-align:center;max-width:19rem;min-height:2.8em}
+#needle{transform-origin:120px 120px;transition:transform 1.2s cubic-bezier(.25,1.2,.4,1)}
+#needle.idle{animation:sway 3.5s ease-in-out infinite}
+@keyframes sway{50%{transform:rotate(var(--a2))}}
+.dial .bezel{fill:none;stroke:var(--h-brass);stroke-width:1;opacity:.5}
+.dial .face{fill:var(--h-face);stroke:var(--h-brass);stroke-width:1.5}
+.dial .tk{stroke:var(--h-soft);stroke-width:.8;opacity:.7}
+.dial .tk.big{stroke:var(--h-brass);stroke-width:1.8;opacity:1}
+.dial text{font-family:"IBM Plex Mono",monospace;font-size:12px;fill:var(--h-ink);text-anchor:middle;dominant-baseline:middle}
+.dial .cap{font-family:var(--sans);font-size:10px;font-weight:600;fill:var(--h-brass)}
+@media (max-width:760px){.hero{grid-template-columns:1fr;padding-block:2.75rem;gap:2rem}.dial svg{max-width:13rem}}
+
+.grounded{display:flex;flex-wrap:wrap;gap:.4rem 1.25rem;align-items:baseline;padding-block:1.1rem;border-bottom:1px solid var(--rule);font-size:.88rem;color:var(--soft)}
+.grounded strong{color:var(--ink);font-weight:600}
+
+/* sections */
+.sec{display:grid;grid-template-columns:minmax(0,15rem) minmax(0,1fr);gap:1.5rem 4rem;padding-block:3.75rem;border-top:1px solid var(--rule);scroll-margin-top:4.5rem}
+.sec:first-of-type{border-top:0}
+.sec-head{align-self:start;position:sticky;top:calc(env(safe-area-inset-top,0px) + 5rem);display:grid;gap:.7rem}
+.sec-head p{font-size:.93rem;color:var(--soft)}
+.sec-body{min-width:0}
+@media (max-width:860px){.sec{grid-template-columns:1fr;padding-block:2.75rem}.sec-head{position:static}}
+
+/* self-check */
+.qs{list-style:none;margin:0;padding:0;counter-reset:q}
+.qs > li{counter-increment:q;padding-block:1.4rem;border-bottom:1px solid var(--rule)}
+.qs > li:first-child{padding-top:0}
+fieldset{border:0;margin:0;padding:0;min-width:0}
+legend{display:flex;gap:.8rem;font-weight:600;padding:0;margin-bottom:.75rem}
+legend::before{content:counter(q);font-family:"IBM Plex Mono",monospace;font-weight:500;color:var(--brass);min-width:1.2rem}
+.opt{display:flex;gap:.7rem;align-items:flex-start;padding:.5rem .6rem;margin-inline-start:1.4rem;border-radius:var(--r);cursor:pointer;border:1px solid transparent}
+.opt:hover{background:var(--wash)}
+.opt:has(input:checked){border-color:var(--rule);background:var(--wash)}
+.opt input{margin-top:.38rem;accent-color:var(--ink);flex:none}
+.opt.right{background:color-mix(in srgb,var(--go) 13%,transparent);border-color:transparent}
+.opt.miss{background:color-mix(in srgb,var(--stop) 11%,transparent);border-color:transparent}
+.opt:has(input:disabled){cursor:default}
+.mark-label{font-size:.78rem;font-weight:700;margin-inline-start:auto;padding-inline-start:.8rem;white-space:nowrap}
+.why{margin:.6rem 0 0;margin-inline-start:2rem;font-size:.93rem;color:var(--soft)}
+.row{display:flex;flex-wrap:wrap;align-items:center;gap:1rem;margin-top:1.5rem}
+.count{font-size:.88rem;color:var(--soft);font-variant-numeric:tabular-nums}
+.warn{color:var(--stop);font-size:.92rem}
+.tally{display:flex;flex-wrap:wrap;margin:1.75rem 0 0;border-block:1px solid var(--rule)}
+.tally div{padding:.9rem 1.5rem .9rem 0;display:grid}
+.tally div + div{border-inline-start:1px solid var(--rule);padding-inline-start:1.5rem}
+.tally dt{font-size:.8rem;color:var(--soft)}
+.tally dd{margin:0;font-family:var(--serif);font-size:1.6rem;font-weight:700;font-variant-numeric:tabular-nums}
+.pos{color:var(--go)} .neg{color:var(--stop)}
+
+/* uses */
+.uses{display:grid;gap:2.25rem}
+.use{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:.75rem 2rem}
+.use > *{min-width:0}
+.use h3,.use .desc{grid-column:1}
+.use .desc{color:var(--soft)}
+.use .chat{grid-column:2;grid-row:1 / span 3}
+.chat{display:grid;gap:.6rem;align-content:start}
+.ask{border:1px solid var(--rule);background:var(--wash);border-radius:var(--r);padding:.8rem .95rem;font-family:var(--mono);font-size:.88rem;line-height:1.55}
+.ask small{display:block;font-family:var(--sans);font-size:.75rem;font-weight:600;color:var(--soft);margin-bottom:.25rem}
+.ask .caret{display:inline-block;width:.5ch;height:1.05em;background:var(--brass);vertical-align:text-bottom;margin-inline-start:2px;animation:blink 1.1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.line{font-size:.9rem;color:var(--soft);padding-inline-start:.95rem;border-inline-start:2px solid var(--needle)}
+.line b{color:var(--ink);font-weight:600}
+@media (max-width:640px){.use{grid-template-columns:1fr}.use .chat{grid-column:1;grid-row:auto}}
+
+/* risks */
+.risk{border-bottom:1px solid var(--rule)}
+.risk:first-child{border-top:1px solid var(--rule)}
+.risk summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:1rem;padding-block:1.1rem}
+.risk summary::-webkit-details-marker{display:none}
+.risk summary:hover h3{color:var(--needle)}
+.risk summary::after{content:"";width:.55rem;height:.55rem;border-inline-end:2px solid var(--ink);border-bottom:2px solid var(--ink);transform:rotate(45deg);flex:none;margin-inline-start:auto;transition:transform .2s}
+.risk[open] summary::after{transform:rotate(-135deg)}
+.risk-in{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem 2.5rem;padding-bottom:1.5rem}
+.risk-in > *{min-width:0}
+.risk-in .what{grid-column:1/-1;color:var(--soft)}
+.risk-in h4{font-size:.82rem;font-weight:700;margin:0 0 .4rem;color:var(--needle)}
+.risk-in ul{margin:0;padding-inline-start:1.1rem;display:grid;gap:.3rem}
+@media (max-width:640px){.risk-in{grid-template-columns:1fr}}
+
+/* scenarios */
+.panel{background:var(--sheet);border:1px solid var(--rule);border-radius:6px;padding:1.6rem;display:grid;gap:1.25rem}
+.panel-top{display:flex;justify-content:space-between;align-items:center;gap:1rem;font-size:.85rem;color:var(--soft);font-variant-numeric:tabular-nums}
+.pips{display:flex;gap:4px}
+.pips button{width:1.6rem;height:1.1rem;padding:0;border:0;background:none;cursor:pointer;display:grid;place-items:center}
+.pips button::before{content:"";width:100%;height:3px;background:var(--rule)}
+.pips button[aria-current="true"]::before{background:var(--ink)}
+.pips button.seen::before{background:var(--soft)}
+.situation{font-family:var(--serif);font-size:1.3rem;line-height:1.4;font-weight:600}
+html[dir="rtl"] .situation{line-height:1.8}
+.choices{display:grid;gap:.5rem}
+.choice{text-align:start;background:var(--paper);border:1px solid var(--rule);border-radius:var(--r);padding:.85rem 1rem;cursor:pointer;display:flex;gap:.8rem;align-items:baseline;transition:border-color .15s}
+.choice:hover{border-color:var(--ink)}
+.choice:active{transform:translateY(1px)}
+.choice .key{font-family:"IBM Plex Mono",monospace;font-size:.8rem;color:var(--soft);flex:none}
+.choice[aria-pressed="true"]{border-color:var(--v);box-shadow:inset 0 0 0 1px var(--v)}
+.result{padding:.9rem 1rem;border-inline-start:3px solid var(--v);background:color-mix(in srgb,var(--v) 9%,transparent)}
+.result strong{color:var(--v);margin-inline-end:.4rem}
+.panel-nav{display:flex;justify-content:space-between;gap:.75rem}
+
+/* rules */
+.tablewrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:.95rem}
+th{text-align:start;font-size:.8rem;font-weight:700;color:var(--soft);padding:.5rem .75rem .5rem 0;border-bottom:1.5px solid var(--ink)}
+td{padding:.7rem .75rem .7rem 0;border-bottom:1px solid var(--rule);vertical-align:top}
+td:last-child,th:last-child{white-space:nowrap;padding-inline-end:0}
+tbody tr:hover td{background:var(--wash)}
+.status{display:inline-flex;align-items:center;gap:.45rem;font-size:.85rem;font-weight:600;color:var(--c)}
+.status::before{content:"";width:.6rem;height:.6rem;border-radius:50%;background:var(--c)}
+.footnote{margin-top:1.25rem;font-size:.92rem;color:var(--soft);max-width:44rem;display:grid;gap:.6rem}
+
+/* alerts */
+.filters{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1.25rem}
+.filters button{background:none;border:1px solid var(--rule);border-radius:999px;padding:.3rem .9rem;font-size:.85rem;cursor:pointer;min-height:2rem}
+.filters button:hover{border-color:var(--ink)}
+.filters button[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+.filters .n{font-variant-numeric:tabular-nums;opacity:.65;margin-inline-start:.3rem}
+.log{list-style:none;margin:0;padding:0}
+.log li{display:grid;grid-template-columns:7.5rem minmax(0,1fr);gap:1.25rem;padding-block:1rem;border-top:1px solid var(--rule)}
+.log li:last-child{border-bottom:1px solid var(--rule)}
+.lvl{font-size:.82rem;font-weight:700;color:var(--c);display:flex;align-items:center;gap:.45rem}
+.lvl::before{content:"";width:.6rem;height:.6rem;background:var(--c)}
+.log .meta{font-size:.8rem;color:var(--soft);margin-top:.2rem}
+.log p{font-size:.93rem;color:var(--soft);margin-top:.25rem}
+.ex{font-size:.72rem;font-weight:600;color:var(--soft);border:1px solid var(--rule);border-radius:2px;padding:0 .35rem;margin-inline-start:.4rem;vertical-align:.12em;font-family:var(--sans)}
+@media (max-width:560px){.log li{grid-template-columns:1fr;gap:.3rem}}
+
+/* sources */
+.refs{list-style:none;margin:0;padding:0;counter-reset:r}
+.refs li{display:grid;grid-template-columns:2rem minmax(0,1fr);gap:.25rem 1rem;padding-block:1rem;border-top:1px solid var(--rule);scroll-margin-top:5rem}
+.refs li:last-child{border-bottom:1px solid var(--rule)}
+.refs li:target{background:color-mix(in srgb,var(--brass) 12%,transparent)}
+.refs .no{font-family:"IBM Plex Mono",monospace;color:var(--brass);font-weight:500}
+.refs .cite{direction:ltr;text-align:start;unicode-bidi:isolate}
+html[dir="rtl"] .refs .cite{text-align:right}
+.refs .cite a{font-weight:600}
+.refs .used{grid-column:2;font-size:.85rem;color:var(--soft)}
+
+/* reviews */
+.rv-summary{display:flex;flex-wrap:wrap;align-items:baseline;gap:.4rem 1rem;padding-bottom:1.1rem;border-bottom:1.5px solid var(--ink)}
+.rv-avg{font-family:var(--serif);font-size:2.4rem;font-weight:700;line-height:1;font-variant-numeric:tabular-nums}
+.rv-summary .muted{font-size:.9rem}
+.stars{display:inline-flex;gap:2px;color:var(--brass);letter-spacing:0;font-size:1rem;line-height:1}
+.stars .off{color:var(--rule)}
+.rv-list{list-style:none;margin:0;padding:0}
+.rv-list li{padding-block:1.15rem;border-bottom:1px solid var(--rule);display:grid;gap:.45rem}
+.rv-meta{display:flex;flex-wrap:wrap;align-items:center;gap:.3rem .8rem;font-size:.85rem;color:var(--soft)}
+.rv-meta strong{color:var(--ink);font-size:.95rem}
+.rv-text{max-width:62ch;white-space:pre-line;overflow-wrap:anywhere}
+.rv-empty{padding-block:1.4rem;color:var(--soft);border-bottom:1px solid var(--rule)}
+.rv-more{margin-top:1rem}
+.rv-form{margin-top:2.5rem;padding:1.5rem;border:1px solid var(--rule);border-radius:6px;background:var(--sheet);display:grid;gap:1.15rem;max-width:40rem}
+.rv-form h3{font-size:1.2rem}
+.field{display:grid;gap:.35rem}
+.field label,.field .lab{font-weight:600;font-size:.92rem}
+.field .hint{font-size:.8rem;color:var(--soft);font-weight:400}
+.field input[type="text"]{width:100%;padding:.65rem .75rem;border:1px solid var(--rule);border-radius:var(--r);background:var(--paper);color:var(--ink);font:inherit}
+.field input[type="text"]:focus{border-color:var(--ink);outline:none;box-shadow:0 0 0 3px color-mix(in srgb,var(--brass) 35%,transparent)}
+.hp{position:absolute;inset-inline-start:-9999px;width:1px;height:1px;overflow:hidden}
+.charcount{font-size:.8rem;color:var(--soft);text-align:end;font-variant-numeric:tabular-nums}
+.fb{display:grid;gap:1.25rem;max-width:36rem}
+.scale{display:flex;gap:.4rem}
+.scale button{width:2.9rem;height:2.9rem;border:1px solid var(--rule);border-radius:var(--r);background:var(--sheet);font-weight:700;cursor:pointer;font-variant-numeric:tabular-nums}
+.scale button:hover{border-color:var(--ink)}
+.scale button[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+.scale-ends{display:flex;justify-content:space-between;font-size:.8rem;color:var(--soft);max-width:15.6rem;margin-top:.35rem}
+.fb label{font-weight:600;font-size:.92rem}
+textarea{width:100%;min-height:6rem;margin-top:.4rem;padding:.75rem;border:1px solid var(--rule);border-radius:var(--r);background:var(--sheet);color:var(--ink);font:inherit;resize:vertical}
+textarea:focus{border-color:var(--ink);outline:none;box-shadow:0 0 0 3px color-mix(in srgb,var(--brass) 35%,transparent)}
+.done{color:var(--go);font-weight:600}
+textarea{background:var(--paper)}
+
+/* colophon */
+.colophon{border-top:1.5px solid var(--ink);margin-top:1rem;padding-block:2rem 3rem;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.5rem 3rem;font-size:.92rem}
+.colophon > div{display:grid;gap:.35rem;align-content:start}
+.colophon .who{font-family:"Source Serif 4",Georgia,serif;font-size:1.2rem;font-weight:700}
+.colophon .lab{font-size:.8rem;font-weight:700;color:var(--brass)}
+@media (max-width:760px){.colophon{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<noscript><p style="padding:1rem">SafeAICompass needs JavaScript turned on to show its content.</p></noscript>
+<a class="skip" href="#main" data-t="skip"></a>
+<header class="top">
+  <div class="page top-in">
+    <a class="mark" href="#top">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10.5" fill="none" stroke="var(--brass)" stroke-width="1.8"/><path d="M12 3.6 14.4 12H9.6Z" fill="var(--needle)"/><path d="M12 20.4 9.6 12h4.8Z" fill="var(--ink)"/></svg>
+      SafeAICompass
+    </a>
+    <nav class="nav" aria-label="Sections">
+      <a href="#check" data-t="nav_check"></a>
+      <a href="#uses" data-t="nav_uses"></a>
+      <a href="#risks" data-t="nav_risks"></a>
+      <a href="#scenarios" data-t="nav_scen"></a>
+      <a href="#rules" data-t="nav_rules"></a>
+      <a href="#alerts" data-t="nav_alerts"></a>
+      <a href="#reviews" data-t="nav_rev"></a>
+      <a href="#sources" data-t="nav_src"></a>
+    </nav>
+    <div class="switches">
+      <button class="switch" id="langBtn" type="button"></button>
+      <button class="switch" id="themeBtn" type="button"></button>
+    </div>
+  </div>
+</header>
+
+<div class="band" id="top">
+  <div class="page hero">
+    <div>
+      <p class="kicker" data-t="kicker"></p>
+      <h1 data-t="h1"></h1>
+      <p class="lede" data-t="lede"></p>
+      <div class="actions">
+        <a class="btn brass" href="#check" data-t="cta"></a>
+        <a class="textlink" href="#scenarios" data-t="cta2"></a>
+      </div>
+      <p class="targets" data-t="targets"></p>
+    </div>
+    <figure class="dial">
+      <svg viewBox="0 0 240 250" aria-hidden="true">
+        <circle class="bezel" cx="120" cy="120" r="112"/>
+        <circle class="face" cx="120" cy="120" r="98"/>
+        <g id="ticks"></g>
+        <text x="120" y="37">N</text><text x="203" y="120">E</text><text x="120" y="203">S</text><text x="37" y="120">W</text>
+        <text class="cap" x="120" y="2" id="capN"></text>
+        <text class="cap" x="120" y="243" id="capS"></text>
+        <g id="needle">
+          <path d="M120 40 L130 120 L110 120Z" fill="var(--needle)"/>
+          <path d="M120 200 L110 120 L130 120Z" fill="var(--h-brass)"/>
+          <circle cx="120" cy="120" r="6" fill="var(--h-face)" stroke="var(--h-brass)" stroke-width="1.5"/>
+        </g>
+      </svg>
+      <figcaption id="dialCap" aria-live="polite"></figcaption>
+    </figure>
+  </div>
+</div>
+
+<main class="page" id="main">
+  <p class="grounded" data-t="grounded"></p>
+
+  <section class="sec" id="check">
+    <div class="sec-head"><h2 data-t="check_h"></h2><p data-t="check_p"></p></div>
+    <div class="sec-body"><form id="quiz" novalidate></form></div>
+  </section>
+
+  <section class="sec" id="uses">
+    <div class="sec-head"><h2 data-t="uses_h"></h2><p data-t="uses_p"></p></div>
+    <div class="sec-body uses" id="useList"></div>
+  </section>
+
+  <section class="sec" id="risks">
+    <div class="sec-head"><h2 data-t="risks_h"></h2><p data-t="risks_p"></p></div>
+    <div class="sec-body" id="riskList"></div>
+  </section>
+
+  <section class="sec" id="scenarios">
+    <div class="sec-head"><h2 data-t="scen_h"></h2><p data-t="scen_p"></p></div>
+    <div class="sec-body"><div class="panel" id="panel"></div></div>
+  </section>
+
+  <section class="sec" id="rules">
+    <div class="sec-head"><h2 data-t="rules_h"></h2><p data-t="rules_p"></p></div>
+    <div class="sec-body">
+      <div class="tablewrap"><table id="rulesTable"></table></div>
+      <div class="footnote"><p data-t="rules_note"></p><p data-t="rules_sdaia"></p></div>
+    </div>
+  </section>
+
+  <section class="sec" id="alerts">
+    <div class="sec-head"><h2 data-t="alerts_h"></h2><p data-t="alerts_p"></p></div>
+    <div class="sec-body"><div class="filters" id="filters"></div><ul class="log" id="log"></ul></div>
+  </section>
+
+  <section class="sec" id="reviews">
+    <div class="sec-head"><h2 data-t="rv_h"></h2><p data-t="rv_p"></p></div>
+    <div class="sec-body">
+      <div id="rvBoard" aria-live="polite"></div>
+      <form class="rv-form" id="rvForm" novalidate></form>
+    </div>
+  </section>
+
+  <section class="sec" id="sources">
+    <div class="sec-head"><h2 data-t="src_h"></h2><p data-t="src_p"></p></div>
+    <div class="sec-body"><ol class="refs" id="refs"></ol></div>
+  </section>
+
+  <footer class="colophon">
+    <div>
+      <span class="lab" data-t="made_by"></span>
+      <span class="who"><bdi>Razi Moayed Money</bdi></span>
+      <span class="who"><bdi>Lujain Saad ALdayel</bdi></span>
+    </div>
+    <div>
+      <span class="lab" data-t="program"></span>
+      <p data-t="program_p"></p>
+      <p class="muted" data-t="reviewed"></p>
+    </div>
+    <div>
+      <span class="lab" data-t="note_lab"></span>
+      <p class="muted" data-t="disclaimer"></p>
+    </div>
+  </footer>
+</main>
+
+<script>
+const SOURCES = [
+  {who:"Miao, F. & Holmes, W. (2023).", title:"Guidance for generative AI in education and research", pub:"UNESCO.", url:"https://www.unesco.org/en/articles/guidance-generative-ai-education-and-research",
+   used:["Responsible use of generative AI in teaching and study","الاستخدام المسؤول للذكاء الاصطناعي التوليدي في التعليم والدراسة"]},
+  {who:"Saudi Data & AI Authority (SDAIA) (2023).", title:"AI Ethics Principles, version 2.0 (summary by Al Tamimi & Company)", pub:"Al Tamimi & Company.", url:"https://www.tamimi.com/news/ai-ethics-principles-version-2-0/",
+   used:["Saudi Arabia's seven national AI ethics principles","مبادئ أخلاقيات الذكاء الاصطناعي الوطنية السبعة في المملكة"]},
+  {who:"National Cyber Security Centre (2023).", title:"ChatGPT and large language models: what's the risk?", pub:"NCSC, UK.", url:"https://www.ncsc.gov.uk/blog-post/chatgpt-and-large-language-models-whats-the-risk",
+   used:["Privacy of what you type, wrong answers, AI-written phishing","خصوصية ما تكتبه، والإجابات الخاطئة، والتصيّد المكتوب بالذكاء الاصطناعي"]},
+  {who:"National Cyber Security Centre.", title:"How to spot a scam email, text message or call", pub:"NCSC, UK.", url:"https://www.ncsc.gov.uk/collection/phishing-scams/spot-scams",
+   used:["Warning signs of phishing and reporting","علامات التصيّد الاحتيالي والإبلاغ عنه"]},
+  {who:"Federal Trade Commission (2023).", title:"Scammers use AI to enhance their family emergency schemes", pub:"FTC Consumer Alert, US.", url:"https://consumer.ftc.gov/consumer-alerts/2023/03/scammers-use-ai-enhance-their-family-emergency-schemes",
+   used:["Voice-cloning scams and how to verify a caller","احتيال استنساخ الأصوات وكيف تتحقق من المتصل"]},
+  {who:"MIT Media Lab.", title:"Detect Fakes", pub:"Massachusetts Institute of Technology.", url:"https://www.media.mit.edu/projects/detect-fakes/overview/",
+   used:["Visual cues for spotting deepfake video","العلامات البصرية لكشف مقاطع التزييف العميق"]},
+  {who:"Walters, W. H. & Wilder, E. I. (2023).", title:"Fabrication and errors in the bibliographic citations generated by ChatGPT", pub:"Scientific Reports, 13, 14045.", url:"https://doi.org/10.1038/s41598-023-41032-5",
+   used:["How often chatbots invent references","مدى اختلاق روبوتات المحادثة للمراجع"]}
+];
+
+const UI = {
+  skip:["Skip to content","انتقل إلى المحتوى"],
+  nav_check:["Self-check","اختبر نفسك"], nav_uses:["Good uses","الاستخدام النافع"], nav_risks:["Risks","المخاطر"],
+  nav_scen:["Scenarios","مواقف"], nav_rules:["Guidelines","الإرشادات"], nav_alerts:["Alerts","التنبيهات"], nav_src:["Sources","المصادر"],
+  kicker:["An AI-literacy guide for university students","دليل للوعي بالذكاء الاصطناعي لطلاب الجامعة"],
+  h1:["Know when AI helps your studies and when it <span>puts you at risk</span>.","اعرف متى يفيدك الذكاء الاصطناعي في دراستك، ومتى <span>يعرّضك للخطر</span>."],
+  lede:["Practical guidance on deepfakes, AI-written phishing, made-up sources, privacy and academic integrity, with real situations to practise on.","إرشادات عملية حول التزييف العميق، والتصيّد الاحتيالي المكتوب بالذكاء الاصطناعي، والمصادر المختلَقة، والخصوصية، والنزاهة الأكاديمية، مع مواقف حقيقية للتدريب."],
+  cta:["Take the self-check","ابدأ الاختبار الذاتي"], cta2:["Or start with a scenario","أو ابدأ بموقف عملي"],
+  targets:["Our project targets: a <b>30%</b> rise in self-check scores after using the guide, and <b>80%</b> of visitors able to spot and avoid AI misuse.","أهداف مشروعنا: ارتفاع نتائج الاختبار الذاتي بنسبة <b>30%</b> بعد استخدام الدليل، وأن يتمكّن <b>80%</b> من الزوار من تمييز سوء استخدام الذكاء الاصطناعي وتجنّبه."],
+  capN:["USE WISELY","استخدم بوعي"], capS:["AT RISK","في خطر"],
+  dial_none:["Take the self-check and the needle will show where you stand.","أجب عن الاختبار الذاتي وستشير الإبرة إلى موقعك."],
+  dial_score:["Latest self-check: {s} of 5. A perfect score points due north.","آخر نتيجة: {s} من 5. النتيجة الكاملة تشير إلى الشمال تمامًا."],
+  grounded:["<strong>Built on published guidance</strong> from UNESCO, SDAIA, the UK National Cyber Security Centre, the US Federal Trade Commission and MIT Media Lab. Numbers in the text link to the <a href=\"#sources\">full sources</a>.","<strong>مبني على إرشادات منشورة</strong> من اليونسكو، وسدايا، والمركز الوطني للأمن السيبراني في المملكة المتحدة، ولجنة التجارة الفيدرالية الأمريكية، ومختبر الوسائط في معهد MIT. الأرقام في النص تقودك إلى <a href=\"#sources\">المصادر كاملة</a>."],
+  check_h:["Where do you stand?","أين تقف الآن؟"],
+  check_p:["Five questions, about two minutes. Take it now and again after reading the guide to see your progress. Answers stay on this device.","خمسة أسئلة في دقيقتين تقريبًا. أجبها الآن ثم بعد قراءة الدليل لترى تقدّمك. تبقى الإجابات على جهازك."],
+  submit:["Check my answers","صحّح إجاباتي"], retake:["Take it again","أعد الاختبار"],
+  answered:["{n} of 5 answered","أجبت عن {n} من 5"],
+  missing:["Answer all five questions first.","أجب عن الأسئلة الخمسة أولًا."],
+  right:["Correct","صحيحة"], wrong:["Your answer","إجابتك"], answer:["Answer","الإجابة"],
+  first:["First attempt","المحاولة الأولى"], latest:["Latest","الأخيرة"], change:["Change","التغيّر"],
+  after:["Read on, then take it again to measure the change.","تابع القراءة، ثم أعد الاختبار لتقيس التغيّر."],
+  uses_h:["Where AI helps","أين يفيدك الذكاء الاصطناعي"],
+  uses_p:["Treat AI as a tutor or an editor. Graded work should still come from you.","تعامل معه كمعلّم أو محرّر، ويبقى العمل المُقيَّم من إنتاجك أنت."],
+  you:["You","أنت"], line:["Where the line is","أين الحدّ"],
+  risks_h:["Five risks to recognise","خمسة مخاطر يجب أن تعرفها"],
+  risks_p:["The ones students run into most. Open each for warning signs and what to do.","الأكثر شيوعًا بين الطلاب. افتح كل خطر لترى علاماته وما يجب فعله."],
+  signs:["Warning signs","علامات التحذير"], todo:["What to do","ماذا تفعل"],
+  scen_h:["What would you do?","ماذا ستفعل؟"],
+  scen_p:["Four situations students face. Pick an answer to see why it holds up or where it fails.","أربعة مواقف يمرّ بها الطلاب. اختر إجابة لترى لماذا تصمد أو أين تخطئ."],
+  scen_of:["Scenario {n} of {t}","الموقف {n} من {t}"], next:["Next","التالي"], prev:["Previous","السابق"], goto:["Go to scenario {n}","انتقل إلى الموقف {n}"],
+  v_good:["Good call.","قرار صائب."], v_risky:["Risky.","فيه مخاطرة."], v_bad:["Avoid this.","تجنّب هذا."],
+  rules_h:["Guidelines for coursework","إرشادات للأعمال الدراسية"],
+  rules_p:["A general guide. Your syllabus and instructor have the final word.","دليل عام، والكلمة الأخيرة لخطة المقرر ولأستاذك."],
+  th_do:["What you want to use AI for","ما تريد استخدام الذكاء الاصطناعي فيه"], th_status:["Status","الحكم"],
+  rule_go:["Usually fine","مقبول غالبًا"], rule_ask:["Check the course policy","راجع سياسة المقرر"], rule_stop:["Not acceptable","غير مقبول"],
+  rules_note:["If a syllabus says nothing about AI, ask your instructor before using it on graded work, and keep a short note of how you used it. UNESCO's guidance puts human judgement at the centre of any use of generative AI in study.{1}","إذا لم تذكر خطة المقرر شيئًا عن الذكاء الاصطناعي، فاسأل أستاذك قبل استخدامه في أي عمل مُقيَّم، واحتفظ بملاحظة قصيرة توضّح كيف استخدمته. وتضع إرشادات اليونسكو الحكم البشري في صميم أي استخدام للذكاء الاصطناعي التوليدي في الدراسة.{1}"],
+  rules_sdaia:["Saudi Arabia's national AI Ethics Principles include privacy and security, transparency and explainability, and accountability and responsibility.{2}","تتضمن مبادئ أخلاقيات الذكاء الاصطناعي الوطنية في المملكة: الخصوصية والأمن، والشفافية وقابلية التفسير، والمساءلة والمسؤولية.{2}"],
+  alerts_h:["Risk alerts","تنبيهات المخاطر"],
+  alerts_p:["How the team will post verified alerts during the pilot. Current entries are examples.","هكذا سينشر الفريق التنبيهات الموثّقة خلال المرحلة التجريبية. الإدخالات الحالية أمثلة."],
+  all:["All","الكل"], example:["Example","مثال"],
+  cat_phishing:["Phishing","تصيّد احتيالي"], cat_deepfake:["Deepfakes","تزييف عميق"], cat_integrity:["Academic integrity","النزاهة الأكاديمية"], cat_privacy:["Privacy","الخصوصية"], cat_accuracy:["Accuracy","الدقة"],
+  sev_high:["High","مرتفع"], sev_med:["Medium","متوسط"], sev_info:["Info","للعلم"],
+  src_h:["Sources","المصادر"],
+  src_p:["Every factual claim on this page traces back to one of these. Titles are kept in their original language.","كل معلومة في هذه الصفحة تعود إلى أحد هذه المصادر، وأبقينا العناوين بلغتها الأصلية."],
+  used_for:["Used for","استُخدم في"],
+  nav_rev:["Reviews","التقييمات"],
+  rv_h:["What students say","آراء الطلاب"],
+  rv_p:["Reviews from people who used the guide. The team checks each one before it appears here.","تقييمات من استخدموا الدليل. يراجع الفريق كل تقييم قبل ظهوره هنا."],
+  rv_loading:["Loading reviews…","جارٍ تحميل التقييمات…"],
+  rv_error:["Reviews couldn't load right now. Refresh the page to try again.","تعذّر تحميل التقييمات الآن. حدّث الصفحة للمحاولة مجددًا."],
+  rv_empty:["No reviews yet. Yours could be the first.","لا توجد تقييمات بعد. يمكن أن يكون تقييمك الأول."],
+  rv_count:["{n} reviews","{n} تقييمات"], rv_count1:["1 review","تقييم واحد"],
+  rv_anon:["Anonymous student","طالب مجهول الاسم"],
+  rv_more:["Show all {n} reviews","اعرض جميع التقييمات ({n})"],
+  rv_form_h:["Leave a review","اكتب تقييمك"],
+  fb_q:["How useful was this guide?","ما مدى فائدة هذا الدليل؟"], fb_low:["Not useful","غير مفيد"], fb_high:["Very useful","مفيد جدًا"],
+  rv_text:["Your review","تقييمك"], rv_text_hint:["What helped, and what should we improve?","ما الذي أفادك، وما الذي يجب أن نحسّنه؟"],
+  rv_name:["Name","الاسم"], rv_name_hint:["Optional. Leave it blank to post anonymously.","اختياري. اتركه فارغًا للنشر دون اسم."],
+  rv_send:["Submit review","أرسل التقييم"], rv_sending:["Sending…","جارٍ الإرسال…"],
+  rv_need_rating:["Pick a rating from 1 to 5.","اختر تقييمًا من 1 إلى 5."],
+  rv_need_text:["Write at least a few words (10 characters or more).","اكتب بضع كلمات على الأقل (10 أحرف أو أكثر)."],
+  rv_fail:["Your review didn't send. Check your connection and try again.","لم يُرسل تقييمك. تحقّق من اتصالك وحاول مجددًا."],
+  rv_done:["Thanks! Your review was sent and will appear here after the team approves it.","شكرًا لك! أُرسل تقييمك وسيظهر هنا بعد موافقة الفريق عليه."],
+  rv_wait:["You've already sent a review from this device today. Thank you!","لقد أرسلت تقييمًا من هذا الجهاز اليوم. شكرًا لك!"],
+  rv_privacy:["Don't include personal details such as phone numbers or student IDs.","لا تكتب بيانات شخصية مثل رقم الجوال أو الرقم الجامعي."],
+  made_by:["Made by","إعداد"], program:["Programme","البرنامج"],
+  program_p:["A student project in Mawhiba MetaMinds (M3), Level 2.","مشروع طلابي ضمن برنامج موهبة ميتا مايندز (M3)، المستوى الثاني."],
+  reviewed:["Content last reviewed October 2026.","آخر مراجعة للمحتوى: أكتوبر 2026."],
+  note_lab:["Please note","تنبيه"],
+  disclaimer:["For awareness only. It does not replace your university's official policies or advice from your instructors.","للتوعية فقط، ولا يغني عن السياسات الرسمية لجامعتك أو توجيهات أساتذتك."],
+  dark:["Dark","داكن"], light:["Light","فاتح"]
+};
+
+const QUIZ = [
+  {q:["A chatbot gives you a reference with an author, journal and year. What should you do before citing it?","يعطيك روبوت المحادثة مرجعًا فيه اسم المؤلف والمجلة والسنة. ماذا تفعل قبل الاستشهاد به؟"],
+   o:[["Use it. The details look precise.","أستخدمه، فالتفاصيل تبدو دقيقة."],["Find it in the library database or on the publisher's site.","أبحث عنه في قاعدة بيانات المكتبة أو موقع الناشر."],["Ask the chatbot whether the reference is real.","أسأل الروبوت إن كان المرجع حقيقيًا."]], a:1,
+   e:["Chatbots can invent references that look real, and only an independent source can confirm one exists.{7}","قد تختلق روبوتات المحادثة مراجع تبدو حقيقية، ولا يؤكد وجودها إلا مصدر مستقل.{7}"]},
+  {q:["Which of these is safest to paste into a public AI tool?","أيّ مما يلي هو الأكثر أمانًا للصقه في أداة ذكاء اصطناعي عامة؟"],
+   o:[["Your student ID and transcript","رقمك الجامعي وسجلّ درجاتك"],["A classmate's draft, to compare with yours","مسودة زميلك لمقارنتها بمسودتك"],["A general question about a concept from class","سؤال عام عن مفهوم من المحاضرة"]], a:2,
+   e:["The provider can see and store what you type, so keep out anything you wouldn't want made public.{3}","يستطيع مزوّد الخدمة رؤية ما تكتبه وتخزينه، فلا تضع فيه ما لا تريد أن يصبح علنيًا.{3}"]},
+  {q:["A voice note that sounds like your dean urgently asks for your portal password. What is the best move?","تصلك رسالة صوتية بصوت يشبه صوت العميد يطلب كلمة مرور البوابة على وجه السرعة. ما التصرف الأفضل؟"],
+   o:[["Send it quickly. It's the dean.","أرسلها بسرعة، فهو العميد."],["Verify through an official channel and never share the password.","أتحقق عبر قناة رسمية ولا أشارك كلمة المرور أبدًا."],["Reply with a voice note asking for proof.","أرد برسالة صوتية أطلب فيها إثباتًا."]], a:1,
+   e:["Voices can be cloned, so a familiar voice proves nothing. Contact the person through a number or channel you already know.{5}","يمكن استنساخ الأصوات، فالصوت المألوف لا يثبت شيئًا. تواصل مع الشخص عبر رقم أو قناة تعرفها مسبقًا.{5}"]},
+  {q:["Your instructor allows AI for brainstorming only. You use it to write your conclusion. This is:","يسمح أستاذك باستخدام الذكاء الاصطناعي للعصف الذهني فقط، وأنت استخدمته لكتابة الخاتمة. هذا:"],
+   o:[["Fine, since it's only the conclusion","مقبول، فهي الخاتمة فقط"],["An academic integrity violation","مخالفة للنزاهة الأكاديمية"],["Fine if you change a few words","مقبول إذا غيّرت بعض الكلمات"]], a:1,
+   e:["The course policy sets the limit. Using AI beyond it is a violation, however small the part.","سياسة المقرر هي التي تحدد المسموح، وتجاوزها مخالفة مهما كان الجزء صغيرًا."]},
+  {q:["A shocking clip of a public figure is spreading in group chats. What is a good first check?","ينتشر في المجموعات مقطع صادم لشخصية عامة. ما أول خطوة جيدة للتحقق؟"],
+   o:[["Count how many people have shared it","أعدّ كم شخصًا شاركه"],["Check whether the video is high resolution","أتأكد إن كان المقطع عالي الدقة"],["Look for the original source and trusted reporting","أبحث عن المصدر الأصلي وعن تغطية موثوقة"]], a:2,
+   e:["Shares and sharpness prove nothing. Check the source, then look for cues like unnatural blinking or lip movement.{6}","عدد المشاركات ووضوح الصورة لا يثبتان شيئًا. تحقّق من المصدر، ثم ابحث عن علامات مثل الرمش أو حركة الشفاه غير الطبيعية.{6}"]}
+];
+
+const USES = [
+  {t:["Explain a concept another way","اشرح المفهوم بطريقة أخرى"], b:["Stuck after a lecture? Ask for a simpler explanation or an analogy, then check it against your notes.","هل توقّف فهمك بعد المحاضرة؟ اطلب شرحًا أبسط أو تشبيهًا، ثم قارنه بملاحظاتك."],
+   p:["Explain the difference between mean and median with an example from daily life.","اشرح الفرق بين المتوسط والوسيط بمثال من الحياة اليومية."], w:["Answers can sound convincing and still be partly wrong. Your textbook and instructor remain the reference.{3}","قد تبدو الإجابات مقنعة وهي خاطئة جزئيًا، ويبقى المرجع كتابك وأستاذك.{3}"]},
+  {t:["Quiz yourself","اختبر نفسك"], b:["Turn your notes into practice questions before an exam.","حوّل ملاحظاتك إلى أسئلة تدريبية قبل الاختبار."],
+   p:["Write five practice questions on Newton's laws and wait for my answers before marking them.","اكتب خمسة أسئلة تدريبية عن قوانين نيوتن، وانتظر إجاباتي قبل تصحيحها."], w:["Practice questions are fine. Answers to a graded assignment are not.","الأسئلة التدريبية مقبولة، أما حلول واجب مُقيَّم فلا."]},
+  {t:["Edit your own draft","حرّر مسودتك أنت"], b:["Get feedback on clarity and grammar in writing that is already yours.","اطلب ملاحظات على الوضوح والقواعد في نص كتبته أنت."],
+   p:["Point out the unclear sentences in my paragraph and explain why, without rewriting it.","حدّد الجمل غير الواضحة في فقرتي واشرح السبب، دون أن تعيد كتابتها."], w:["Once the ideas or wording come from the AI, the work is no longer yours. Disclose your use when the course asks.","عندما تأتي الأفكار أو الصياغة من الذكاء الاصطناعي لا يعود العمل عملك. صرّح باستخدامه إذا طلب المقرر ذلك."]},
+  {t:["Plan a heavy week","خطّط لأسبوع مزدحم"], b:["Break a big project into steps and build a study schedule you can keep.","قسّم المشروع الكبير إلى خطوات، وضع جدول مذاكرة تستطيع الالتزام به."],
+   p:["I have three exams in ten days and two free hours a day. Help me build a revision plan.","لدي ثلاثة اختبارات خلال عشرة أيام وساعتان فارغتان يوميًا. ساعدني في وضع خطة مراجعة."], w:["Keep it general. A study plan doesn't need your ID or grades.","اجعل التفاصيل عامة، فخطة المذاكرة لا تحتاج رقمك الجامعي أو درجاتك."]}
+];
+
+const RISKS = [
+  {n:["Deepfakes and cloned voices","التزييف العميق والأصوات المستنسخة"],
+   w:["AI-generated video, images or audio that make a real person appear to say or do something they never did. Scammers also clone familiar voices to make requests for money or information sound real.{5}","مقاطع أو صور أو أصوات يولّدها الذكاء الاصطناعي لتُظهر شخصًا حقيقيًا يقول أو يفعل ما لم يحدث. ويستنسخ المحتالون أيضًا أصواتًا مألوفة ليبدو طلب المال أو المعلومات حقيقيًا.{5}"],
+   s:[["Skin that looks too smooth or too wrinkled, or an age that doesn't match the hair and eyes{6}","Glasses glare or shadows that don't move naturally{6}","Blinking too often or too rarely, or lips out of sync with speech{6}"],["بشرة ناعمة أو مجعّدة أكثر من اللازم، أو عمر لا يتناسب مع الشعر والعينين{6}","انعكاس على النظارة أو ظلال لا تتحرك بشكل طبيعي{6}","رمش كثير جدًا أو قليل جدًا، أو شفاه لا تتطابق مع الكلام{6}"]],
+   d:["Don't share it. Check the original source. If a call or voice note asks for money or passwords, hang up and contact the person on a number you already know.{5}","لا تنشره، وتحقق من المصدر الأصلي. إذا طلبت منك مكالمة أو رسالة صوتية مالًا أو كلمة مرور، فأنهِها وتواصل مع الشخص على رقم تعرفه مسبقًا.{5}"]},
+  {n:["AI-written phishing","التصيّد الاحتيالي بالذكاء الاصطناعي"],
+   w:["Language models make it easier to write convincing scam messages in any language, so fluent writing is no longer a sign that a message is genuine.{3}","تسهّل النماذج اللغوية كتابة رسائل احتيال مقنعة بأي لغة، فلم تعد الكتابة السليمة دليلًا على صحة الرسالة.{3}"],
+   s:[["Claims authority: “IT Services”, the dean, your bank{4}","Pushes urgency or emotion, such as “your account closes in 2 hours”{4}","Asks for passwords, codes or a sign-in through a link"],["يدّعي صفة رسمية: «الدعم الفني»، العميد، البنك{4}","يضغط بالاستعجال أو العاطفة، مثل «سيُغلق حسابك خلال ساعتين»{4}","يطلب كلمة مرور أو رمزًا أو تسجيل دخول عبر رابط"]],
+   d:["Don't click. Open the official portal yourself, contact IT through channels you already know, and report the message.{4}","لا تضغط الرابط. افتح البوابة الرسمية بنفسك، وتواصل مع الدعم الفني عبر القنوات التي تعرفها، وأبلغ عن الرسالة.{4}"]},
+  {n:["Academic integrity","النزاهة الأكاديمية"],
+   w:["Submitting AI-generated work as your own, or using AI where the course doesn't allow it.","تقديم عمل ولّده الذكاء الاصطناعي على أنه عملك، أو استخدامه حيث لا يسمح المقرر."],
+   s:[["You couldn't explain the work without the tool","Paraphrasing tools used to disguise copied text","No record of how you used AI"],["لا تستطيع شرح العمل دون الأداة","استخدام أدوات إعادة الصياغة لإخفاء نص منقول","لا يوجد سجل لطريقة استخدامك للذكاء الاصطناعي"]],
+   d:["Read each syllabus policy, ask when unsure, and disclose your AI use when required.","اقرأ سياسة كل مقرر، واسأل عند الشك، وصرّح باستخدامك للذكاء الاصطناعي عند طلب ذلك."]},
+  {n:["Privacy leaks","تسرّب الخصوصية"],
+   w:["What you type isn't automatically built into the model, but the provider can see and store it, may use it to develop the service, and stored queries can be leaked.{3}","ما تكتبه لا يُضاف تلقائيًا إلى النموذج، لكن المزوّد يستطيع رؤيته وتخزينه، وقد يستخدمه لتطوير الخدمة، ويمكن أن تتسرّب الاستفسارات المخزّنة.{3}"],
+   s:[["Pasting ID numbers, grades or health details","Uploading a classmate's work or photos","Apps asking for far more permissions than they need"],["لصق أرقام الهوية أو الدرجات أو بيانات صحية","رفع عمل زميل أو صوره","تطبيقات تطلب صلاحيات أكثر بكثير مما تحتاج"]],
+   d:["Leave out anything you wouldn't want made public, read the tool's privacy terms first, and never upload other people's data without consent.{3}","لا تكتب ما لا تريد أن يصبح علنيًا، واقرأ شروط الخصوصية للأداة أولًا، ولا ترفع بيانات غيرك دون إذنه.{3}"]},
+  {n:["Made-up facts and sources","معلومات ومصادر مختلَقة"],
+   w:["AI can state wrong facts confidently and invent citations. In one 2023 study, 55% of the references produced by GPT-3.5 were fabricated, compared with 18% for GPT-4.{7}","قد يذكر الذكاء الاصطناعي معلومات خاطئة بثقة ويختلق مراجع. ففي دراسة عام 2023 كانت 55% من المراجع التي أنتجها GPT-3.5 مختلَقة، مقابل 18% لـ GPT-4.{7}"],
+   s:[["References you can't find in the library database","Very specific numbers with no source","Answers that change when you rephrase the question"],["مراجع لا تجدها في قاعدة بيانات المكتبة","أرقام دقيقة جدًا بلا مصدر","إجابات تتغيّر عند إعادة صياغة السؤال"]],
+   d:["Verify every fact and citation in a trusted source before you use it.","تحقق من كل معلومة ومرجع في مصدر موثوق قبل استخدامه."]}
+];
+
+const SCEN = [
+  {s:["Your lab report is due tomorrow. The syllabus allows AI for grammar checks only.","تقرير المختبر مطلوب غدًا، وخطة المقرر تسمح بالذكاء الاصطناعي لتدقيق القواعد فقط."],
+   c:[{t:["Paste your data and ask the AI to write the discussion section.","ألصق البيانات وأطلب من الذكاء الاصطناعي كتابة قسم المناقشة."],v:"bad",y:["Writing the discussion goes beyond grammar checks, so this breaks the course policy.","كتابة المناقشة تتجاوز تدقيق القواعد، فهذا مخالف لسياسة المقرر."]},
+      {t:["Write it yourself, then ask the AI to flag grammar errors, and note this use if required.","أكتبه بنفسي، ثم أطلب من الذكاء الاصطناعي تحديد الأخطاء النحوية، وأذكر ذلك إن طُلب."],v:"good",y:["This stays inside the permitted use, and the ideas remain yours.","هذا ضمن الاستخدام المسموح، وتبقى الأفكار أفكارك."]},
+      {t:["Run a classmate's old report through a paraphrasing tool.","أمرّر تقرير زميل قديم على أداة إعادة صياغة."],v:"bad",y:["Paraphrasing someone else's work is still plagiarism.","إعادة صياغة عمل غيرك تبقى انتحالًا."]}]},
+  {s:["An email from “IT Services” says your account will be suspended in 2 hours unless you verify it through a link. The writing is flawless.","تصلك رسالة من «خدمات تقنية المعلومات» تقول إن حسابك سيُعلَّق خلال ساعتين ما لم تتحقق منه عبر رابط، والرسالة مكتوبة بإتقان."],
+   c:[{t:["Click the link and log in quickly.","أضغط الرابط وأسجّل الدخول بسرعة."],v:"bad",y:["Authority plus urgency plus a login link is the classic phishing pattern, and good grammar no longer proves a message is real.{4}","الصفة الرسمية مع الاستعجال ورابط تسجيل الدخول نمط تصيّد معروف، والكتابة السليمة لم تعد دليلًا على صحة الرسالة.{4}"]},
+      {t:["Reply and ask whether the email is genuine.","أرد وأسأل إن كانت الرسالة حقيقية."],v:"risky",y:["The sender controls that reply address and will simply say yes.","المرسل يتحكم في عنوان الرد وسيجيب ببساطة بنعم."]},
+      {t:["Ignore the link, open the portal yourself and contact IT through the official channel.","أتجاهل الرابط، وأفتح البوابة بنفسي، وأتواصل مع الدعم الفني عبر القناة الرسمية."],v:"good",y:["You verify through a route you control. Report the email so others are warned too.{4}","أنت تتحقق عبر طريق تتحكم فيه. أبلغ عن الرسالة ليُحذَّر الآخرون أيضًا.{4}"]}]},
+  {s:["A group chat shares an embarrassing image of one of your professors. Something about the face looks off.","تُنشر في مجموعة محادثة صورة محرجة لأحد أساتذتك، ويبدو شيء غريب في الوجه."],
+   c:[{t:["Forward it to a few friends to ask what they think.","أرسلها لبعض الأصدقاء لأسألهم عن رأيهم."],v:"bad",y:["Every forward spreads possible harm to a real person.","كل إعادة إرسال تنشر ضررًا محتملًا على شخص حقيقي."]},
+      {t:["Comment in the group asking if it's real.","أعلّق في المجموعة وأسأل إن كانت حقيقية."],v:"risky",y:["Better than sharing, but the image stays in circulation.","أفضل من النشر، لكن الصورة تبقى متداولة."]},
+      {t:["Don't share it, ask the group to delete it, and report it to the relevant university office.","لا أنشرها، وأطلب من المجموعة حذفها، وأبلّغ الجهة المختصة في الجامعة."],v:"good",y:["This limits the spread and gets the case to people who can act.","هذا يحدّ من الانتشار ويوصل الحالة لمن يستطيع التصرّف."]}]},
+  {s:["You want AI feedback on your internship CV, which includes your national ID number and phone number.","تريد ملاحظات الذكاء الاصطناعي على سيرتك الذاتية لتدريب صيفي، وفيها رقم هويتك ورقم جوالك."],
+   c:[{t:["Paste the full CV as it is.","ألصق السيرة كاملة كما هي."],v:"risky",y:["The provider can store what you paste, and feedback on wording doesn't need your ID.{3}","يستطيع المزوّد تخزين ما تلصقه، والملاحظات على الصياغة لا تحتاج رقم هويتك.{3}"]},
+      {t:["Remove the ID and contact details first, then ask for feedback.","أحذف رقم الهوية وبيانات التواصل أولًا، ثم أطلب الملاحظات."],v:"good",y:["You get the same feedback without exposing personal data.","تحصل على الملاحظات نفسها دون كشف بياناتك الشخصية."]},
+      {t:["Ask the AI to add experience you don't have to make it stronger.","أطلب منه إضافة خبرات ليست لدي لتقوية السيرة."],v:"bad",y:["Invented experience is misrepresentation, and interviews expose it quickly.","الخبرات المختلَقة تضليل، والمقابلات تكشفها بسرعة."]}]}
+];
+
+const RULES = [
+  ["go",["Explaining a concept you're stuck on","شرح مفهوم لم تفهمه"]],
+  ["go",["Generating practice questions","توليد أسئلة تدريبية"]],
+  ["go",["Checking grammar in your own writing","تدقيق القواعد في كتابتك أنت"]],
+  ["go",["Planning a study schedule","تخطيط جدول المذاكرة"]],
+  ["ask",["Brainstorming project topics","العصف الذهني لموضوعات المشاريع"]],
+  ["ask",["Help with code in an assignment","المساعدة في كتابة الكود لواجب"]],
+  ["ask",["Translating sources","ترجمة المصادر"]],
+  ["ask",["Summarising assigned readings","تلخيص القراءات المقررة"]],
+  ["stop",["Submitting AI-written work as your own","تقديم عمل كتبه الذكاء الاصطناعي على أنه عملك"]],
+  ["stop",["Inventing data or citations","اختلاق بيانات أو مراجع"]],
+  ["stop",["Using AI during a closed exam","استخدام الذكاء الاصطناعي في اختبار مغلق"]],
+  ["stop",["Uploading other people's private data","رفع بيانات خاصة بالآخرين"]]
+];
+
+const ALERTS = [
+  {c:"phishing",v:"high",t:["Fake “exam schedule” links in messaging groups","روابط «جدول الاختبارات» المزيّفة في مجموعات المحادثة"],b:["Links that imitate the student portal and ask you to sign in. Open the portal by typing its address yourself.{4}","روابط تقلّد بوابة الطالب وتطلب تسجيل الدخول. افتح البوابة بكتابة عنوانها بنفسك.{4}"]},
+  {c:"deepfake",v:"med",t:["Voice-cloned calls asking for urgent money transfers","مكالمات بأصوات مستنسخة تطلب تحويل أموال عاجلًا"],b:["A familiar voice is no longer proof of identity. Hang up and call back on a number you know.{5}","الصوت المألوف لم يعد دليلًا على الهوية. أنهِ المكالمة واتصل على رقم تعرفه.{5}"]},
+  {c:"privacy",v:"med",t:["Free “AI photo editor” apps requesting contacts access","تطبيقات «تحرير الصور بالذكاء الاصطناعي» المجانية التي تطلب الوصول لجهات الاتصال"],b:["A photo editor doesn't need your contacts or messages. Deny permissions the app doesn't need.","محرر الصور لا يحتاج جهات اتصالك أو رسائلك. ارفض الصلاحيات التي لا يحتاجها التطبيق."]},
+  {c:"integrity",v:"info",t:["Paraphrasing tools do not make copied work original","أدوات إعادة الصياغة لا تجعل العمل المنقول أصيلًا"],b:["Reworded text is still someone else's ideas. Cite the source or write from your own understanding.","النص المعاد صياغته يبقى أفكار غيرك. وثّق المصدر أو اكتب من فهمك أنت."]},
+  {c:"accuracy",v:"info",t:["Chatbot citations that lead nowhere","مراجع من روبوتات المحادثة لا تقود إلى شيء"],b:["Search for every reference in the library database before it goes into your bibliography.{7}","ابحث عن كل مرجع في قاعدة بيانات المكتبة قبل إضافته إلى قائمة المراجع.{7}"]}
+];
+
+const saved = {
+  read(key, fallback){ try{ const v = localStorage.getItem(key); return v ? JSON.parse(v) : fallback; }catch(e){ return fallback; } },
+  write(key, value){ try{ localStorage.setItem(key, JSON.stringify(value)); }catch(e){} }
+};
+
+const state = {
+  lang: saved.read("sac-lang", "en"),
+  answers: Array(QUIZ.length).fill(null), graded: false, missing: false,
+  scores: saved.read("sac-scores", []),
+  scenario: 0, picked: null, seen: new Set([0]), filter: "all",
+  rating: null, comment: "", sent: false, ratingMissing: false
+};
+
+const COLORS = {go:"var(--go)", risky:"var(--ask)", ask:"var(--ask)", bad:"var(--stop)", stop:"var(--stop)",
+  high:"var(--stop)", med:"var(--ask)", info:"var(--soft)"};
+
+const L = () => state.lang === "ar" ? 1 : 0;
+const $ = id => document.getElementById(id);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"})[c]);
+const refs = html => html.replace(/\{(\d)\}/g, (_, n) => `<sup class="ref"><a href="#src-${n}" aria-label="Source ${n}">${n}</a></sup>`);
+const tr = pair => refs(pair[L()]);
+const ui = key => refs(UI[key][L()]);
+
+function setLanguage(){
+  const root = document.documentElement;
+  root.lang = state.lang;
+  root.dir = state.lang === "ar" ? "rtl" : "ltr";
+  document.querySelectorAll("[data-t]").forEach(el => { el.innerHTML = ui(el.dataset.t); });
+  $("capN").textContent = UI.capN[L()];
+  $("capS").textContent = UI.capS[L()];
+  const btn = $("langBtn");
+  btn.textContent = state.lang === "ar" ? "English" : "العربية";
+  btn.lang = state.lang === "ar" ? "en" : "ar";
+  btn.setAttribute("aria-label", state.lang === "ar" ? "Switch to English" : "التبديل إلى العربية");
+  syncThemeLabel();
+  renderDial(); renderQuiz(); renderUses(); renderRisks(); renderScenario(); renderRules(); renderAlerts(); renderSources(); renderReviews(); renderReviewForm();
+}
+
+function renderDial(){
+  const needle = $("needle"), latest = state.scores[state.scores.length - 1];
+  if (latest === undefined){
+    needle.classList.add("idle");
+    needle.style.setProperty("--a2", "128deg");
+    needle.style.transform = "rotate(138deg)";
+    $("dialCap").textContent = UI.dial_none[L()];
+  } else {
+    needle.classList.remove("idle");
+    needle.style.transform = `rotate(${180 - latest * 36}deg)`;
+    $("dialCap").textContent = UI.dial_score[L()].replace("{s}", latest);
+  }
+}
+
+function renderQuiz(){
+  const items = QUIZ.map((q, n) => {
+    const opts = q.o.map((o, k) => {
+      let cls = "", tag = "";
+      if (state.graded && k === q.a){ cls = "right"; tag = `<span class="mark-label" style="color:var(--go)">${ui(state.answers[n] === k ? "right" : "answer")}</span>`; }
+      else if (state.graded && state.answers[n] === k){ cls = "miss"; tag = `<span class="mark-label" style="color:var(--stop)">${ui("wrong")}</span>`; }
+      return `<label class="opt ${cls}" for="q${n}-${k}"><input type="radio" id="q${n}-${k}" name="q${n}" value="${k}"${state.answers[n] === k ? " checked" : ""}${state.graded ? " disabled" : ""}><span>${tr(o)}</span>${tag}</label>`;
+    }).join("");
+    return `<li><fieldset><legend>${tr(q.q)}</legend>${opts}${state.graded ? `<p class="why">${tr(q.e)}</p>` : ""}</fieldset></li>`;
+  }).join("");
+
+  const done = state.answers.filter(a => a !== null).length;
+  let foot = state.graded
+    ? `<div class="row"><button type="button" class="btn quiet" id="again">${ui("retake")}</button><span class="muted">${ui("after")}</span></div>`
+    : `<div class="row"><button type="submit" class="btn">${ui("submit")}</button><span class="count" id="count" aria-live="polite">${UI.answered[L()].replace("{n}", done)}</span>${state.missing ? `<span class="warn" role="alert">${ui("missing")}</span>` : ""}</div>`;
+
+  if (state.scores.length){
+    const first = state.scores[0], last = state.scores[state.scores.length - 1];
+    const diff = Math.round((last - first) / QUIZ.length * 100);
+    foot += `<dl class="tally">
+      <div><dt>${ui("first")}</dt><dd>${first}/5</dd></div>
+      <div><dt>${ui("latest")}</dt><dd>${last}/5</dd></div>
+      <div><dt>${ui("change")}</dt><dd class="${diff > 0 ? "pos" : diff < 0 ? "neg" : ""}">${diff > 0 ? "+" : ""}${diff}%</dd></div></dl>`;
+  }
+  $("quiz").innerHTML = `<ol class="qs">${items}</ol>${foot}`;
+  const again = $("again");
+  if (again) again.addEventListener("click", () => {
+    state.answers.fill(null); state.graded = false; renderQuiz();
+    $("check").scrollIntoView({block: "start"});
+  });
+}
+
+$("quiz").addEventListener("change", e => {
+  const m = /^q(\d+)$/.exec(e.target.name || "");
+  if (!m) return;
+  state.answers[Number(m[1])] = Number(e.target.value);
+  const count = $("count");
+  if (count) count.textContent = UI.answered[L()].replace("{n}", state.answers.filter(a => a !== null).length);
+});
+$("quiz").addEventListener("submit", e => {
+  e.preventDefault();
+  if (state.answers.includes(null)){ state.missing = true; renderQuiz(); return; }
+  state.missing = false;
+  state.graded = true;
+  state.scores.push(state.answers.filter((a, n) => a === QUIZ[n].a).length);
+  saved.write("sac-scores", state.scores);
+  renderQuiz(); renderDial();
+});
+
+function renderUses(){
+  $("useList").innerHTML = USES.map(u => `
+    <article class="use">
+      <h3>${tr(u.t)}</h3>
+      <p class="desc">${tr(u.b)}</p>
+      <div class="chat">
+        <div class="ask"><small>${ui("you")}</small>${tr(u.p)}<span class="caret" aria-hidden="true"></span></div>
+        <p class="line"><b>${ui("line")}:</b> ${tr(u.w)}</p>
+      </div>
+    </article>`).join("");
+}
+
+function renderRisks(){
+  const open = [...document.querySelectorAll(".risk")].map(d => d.open);
+  $("riskList").innerHTML = RISKS.map((r, n) => `
+    <details class="risk"${open.length ? (open[n] ? " open" : "") : (n === 0 ? " open" : "")}>
+      <summary><h3>${tr(r.n)}</h3></summary>
+      <div class="risk-in">
+        <p class="what">${tr(r.w)}</p>
+        <div><h4>${ui("signs")}</h4><ul>${r.s[L()].map(s => `<li>${refs(s)}</li>`).join("")}</ul></div>
+        <div><h4>${ui("todo")}</h4><p>${tr(r.d)}</p></div>
+      </div>
+    </details>`).join("");
+}
+
+function renderScenario(){
+  const sc = SCEN[state.scenario];
+  const pick = state.picked === null ? null : sc.c[state.picked];
+  const keys = state.lang === "ar" ? ["أ","ب","ج"] : ["A","B","C"];
+  $("panel").innerHTML = `
+    <div class="panel-top"><span>${UI.scen_of[L()].replace("{n}", state.scenario + 1).replace("{t}", SCEN.length)}</span>
+      <span class="pips">${SCEN.map((_, n) => `<button type="button" data-go="${n}" class="${state.seen.has(n) ? "seen" : ""}" aria-current="${n === state.scenario}" aria-label="${UI.goto[L()].replace("{n}", n + 1)}"></button>`).join("")}</span></div>
+    <p class="situation">${tr(sc.s)}</p>
+    <div class="choices">${sc.c.map((c, n) => `<button type="button" class="choice" data-n="${n}" style="--v:${COLORS[c.v]}" aria-pressed="${state.picked === n}"><span class="key">${keys[n]}</span><span>${tr(c.t)}</span></button>`).join("")}</div>
+    ${pick ? `<p class="result" style="--v:${COLORS[pick.v]}" aria-live="polite"><strong>${ui("v_" + pick.v)}</strong>${tr(pick.y)}</p>` : ""}
+    <div class="panel-nav">
+      <button type="button" class="btn quiet" id="prev"${state.scenario === 0 ? " disabled" : ""}>${ui("prev")}</button>
+      <button type="button" class="btn" id="next"${state.scenario === SCEN.length - 1 ? " disabled" : ""}>${ui("next")}</button>
+    </div>`;
+  const go = n => { state.scenario = n; state.picked = null; state.seen.add(n); renderScenario(); };
+  $("panel").querySelectorAll(".choice").forEach(b => b.addEventListener("click", () => { state.picked = Number(b.dataset.n); renderScenario(); }));
+  $("panel").querySelectorAll("[data-go]").forEach(b => b.addEventListener("click", () => go(Number(b.dataset.go))));
+  $("prev").addEventListener("click", () => go(state.scenario - 1));
+  $("next").addEventListener("click", () => go(state.scenario + 1));
+}
+
+function renderRules(){
+  const rows = RULES.map(([k, txt]) =>
+    `<tr><td>${tr(txt)}</td><td><span class="status" style="--c:${COLORS[k]}">${ui("rule_" + k)}</span></td></tr>`).join("");
+  $("rulesTable").innerHTML = `<thead><tr><th scope="col">${ui("th_do")}</th><th scope="col">${ui("th_status")}</th></tr></thead><tbody>${rows}</tbody>`;
+}
+
+function renderAlerts(){
+  const cats = ["all", "phishing", "deepfake", "integrity", "privacy", "accuracy"];
+  const count = c => c === "all" ? ALERTS.length : ALERTS.filter(a => a.c === c).length;
+  $("filters").innerHTML = cats.map(c =>
+    `<button type="button" data-c="${c}" aria-pressed="${state.filter === c}">${c === "all" ? ui("all") : ui("cat_" + c)}<span class="n">${count(c)}</span></button>`).join("");
+  $("filters").querySelectorAll("button").forEach(b => b.addEventListener("click", () => { state.filter = b.dataset.c; renderAlerts(); }));
+  $("log").innerHTML = ALERTS.filter(a => state.filter === "all" || a.c === state.filter).map(a => `
+    <li>
+      <div><span class="lvl" style="--c:${COLORS[a.v]}">${ui("sev_" + a.v)}</span><div class="meta">${ui("cat_" + a.c)}</div></div>
+      <div><h3>${tr(a.t)}<span class="ex">${ui("example")}</span></h3><p>${tr(a.b)}</p></div>
+    </li>`).join("");
+}
+
+function renderSources(){
+  $("refs").innerHTML = SOURCES.map((s, n) => `
+    <li id="src-${n + 1}">
+      <span class="no">${n + 1}</span>
+      <p class="cite" lang="en">${esc(s.who)} <a href="${s.url}" target="_blank" rel="noopener noreferrer">${esc(s.title)}</a>. ${esc(s.pub)}</p>
+      <p class="used">${ui("used_for")}: ${esc(s.used[L()])}</p>
+    </li>`).join("");
+}
+
+/* Reviews: submitted to a Google Form, shown from a published sheet that lists only approved rows. */
+const REVIEWS = {
+  csv: "https://docs.google.com/spreadsheets/d/e/2PACX-1vTa0O4g6fCDCloLVDl17d2xAJMJFiiNmoWU5o-xV-SkPPUvGBDzAwb_xIKzFxwl9eUSrQ_gCr_WpOIX/pub?gid=2067502261&single=true&output=csv",
+  form: "https://docs.google.com/forms/d/e/1FAIpQLSd884dAcGqGNZFdKAJj38c9M0xEcGvWKXuJLK4P_JP6_TLlcg/formResponse",
+  fields: {text: "entry.678303481", rating: "entry.58840453", name: "entry.249198145", lang: "entry.1083916437"},
+  shownAtFirst: 6,
+  minLength: 10,
+  maxLength: 600
+};
+const reviews = {status: "loading", items: [], showAll: false, sending: false, error: null};
+
+function parseCSV(text){
+  const rows = []; let row = [], cell = "", quoted = false;
+  for (let i = 0; i < text.length; i++){
+    const ch = text[i];
+    if (quoted){
+      if (ch === '"' && text[i + 1] === '"'){ cell += '"'; i++; }
+      else if (ch === '"') quoted = false;
+      else cell += ch;
+    } else if (ch === '"') quoted = true;
+    else if (ch === ","){ row.push(cell); cell = ""; }
+    else if (ch === "\n" || ch === "\r"){
+      if (ch === "\r" && text[i + 1] === "\n") i++;
+      row.push(cell); rows.push(row); row = []; cell = "";
+    } else cell += ch;
+  }
+  if (cell || row.length){ row.push(cell); rows.push(row); }
+  return rows;
+}
+
+function parseSheetDate(value){
+  const m = /^(\d{1,2})\/(\d{1,2})\/(\d{4})(?:\s+(\d{1,2}):(\d{2}))?/.exec(value || "");
+  if (!m) return null;
+  const d = new Date(Number(m[3]), Number(m[2]) - 1, Number(m[1]), Number(m[4] || 0), Number(m[5] || 0));
+  return isNaN(d) ? null : d;
+}
+
+async function loadReviews(){
+  try {
+    const res = await fetch(REVIEWS.csv, {cache: "no-store"});
+    if (!res.ok) throw new Error(res.status);
+    const [header, ...rows] = parseCSV(await res.text());
+    const col = name => (header || []).findIndex(h => h.trim().toLowerCase() === name);
+    const c = {time: col("timestamp"), text: col("review"), rating: col("rating"), name: col("name")};
+    reviews.items = rows.map(r => ({
+      date: parseSheetDate(r[c.time]),
+      text: (r[c.text] || "").trim().slice(0, REVIEWS.maxLength),
+      rating: Math.round(Number(r[c.rating])),
+      name: (r[c.name] || "").trim().slice(0, 40)
+    })).filter(r => r.text && r.rating >= 1 && r.rating <= 5)
+      .sort((a, b) => (b.date || 0) - (a.date || 0));
+    reviews.status = "ready";
+  } catch (err) {
+    reviews.status = "error";
+  }
+  renderReviews();
+}
+
+function starsHTML(n){
+  return `<span class="stars" role="img" aria-label="${n} / 5">${[1,2,3,4,5].map(i => `<span class="${i <= n ? "" : "off"}" aria-hidden="true">★</span>`).join("")}</span>`;
+}
+
+function renderReviews(){
+  const board = $("rvBoard");
+  if (reviews.status === "loading"){ board.innerHTML = `<p class="rv-empty">${ui("rv_loading")}</p>`; return; }
+  if (reviews.status === "error"){ board.innerHTML = `<p class="rv-empty">${ui("rv_error")}</p>`; return; }
+  const items = reviews.items;
+  if (!items.length){ board.innerHTML = `<p class="rv-empty">${ui("rv_empty")}</p>`; return; }
+  const avg = items.reduce((s, r) => s + r.rating, 0) / items.length;
+  const shown = reviews.showAll ? items : items.slice(0, REVIEWS.shownAtFirst);
+  const fmt = new Intl.DateTimeFormat(state.lang === "ar" ? "ar-SA-u-ca-gregory" : "en-GB", {month: "long", year: "numeric"});
+  board.innerHTML = `
+    <div class="rv-summary">
+      <span class="rv-avg">${avg.toFixed(1)}</span>
+      ${starsHTML(Math.round(avg))}
+      <span class="muted">${items.length === 1 ? ui("rv_count1") : UI.rv_count[L()].replace("{n}", items.length)}</span>
+    </div>
+    <ul class="rv-list">${shown.map(() => `<li><div class="rv-meta"><strong></strong><span class="stars-slot"></span><span class="when"></span></div><p class="rv-text" dir="auto"></p></li>`).join("")}</ul>
+    ${!reviews.showAll && items.length > REVIEWS.shownAtFirst ? `<button type="button" class="btn quiet rv-more" id="rvMore">${UI.rv_more[L()].replace("{n}", items.length)}</button>` : ""}`;
+  board.querySelectorAll(".rv-list li").forEach((li, n) => {
+    const r = shown[n];
+    const who = li.querySelector("strong");
+    who.textContent = r.name || UI.rv_anon[L()];
+    who.setAttribute("dir", "auto");
+    li.querySelector(".stars-slot").outerHTML = starsHTML(r.rating);
+    li.querySelector(".when").textContent = r.date ? fmt.format(r.date) : "";
+    li.querySelector(".rv-text").textContent = r.text;
+  });
+  const more = $("rvMore");
+  if (more) more.addEventListener("click", () => { reviews.showAll = true; renderReviews(); });
+}
+
+function sentRecently(){
+  const at = saved.read("sac-review-at", 0);
+  return Date.now() - at < 24 * 60 * 60 * 1000;
+}
+
+function renderReviewForm(){
+  const form = $("rvForm");
+  if (state.sent){ form.innerHTML = `<p class="done" role="status">${ui("rv_done")}</p>`; return; }
+  if (sentRecently()){ form.innerHTML = `<p class="done" role="status">${ui("rv_wait")}</p>`; return; }
+  form.innerHTML = `
+    <h3>${ui("rv_form_h")}</h3>
+    <div class="field">
+      <span class="lab" id="rvRateLabel">${ui("fb_q")}</span>
+      <div class="scale" role="group" aria-labelledby="rvRateLabel">${[1,2,3,4,5].map(n => `<button type="button" data-n="${n}" aria-pressed="${state.rating === n}">${n}</button>`).join("")}</div>
+      <div class="scale-ends"><span>${ui("fb_low")}</span><span>${ui("fb_high")}</span></div>
+    </div>
+    <div class="field">
+      <label for="rvText">${ui("rv_text")} <span class="hint">${ui("rv_text_hint")}</span></label>
+      <textarea id="rvText" maxlength="${REVIEWS.maxLength}" dir="auto">${esc(state.comment)}</textarea>
+      <span class="charcount" id="rvCount">${state.comment.length} / ${REVIEWS.maxLength}</span>
+    </div>
+    <div class="field">
+      <label for="rvName">${ui("rv_name")} <span class="hint">${ui("rv_name_hint")}</span></label>
+      <input type="text" id="rvName" maxlength="40" autocomplete="off" dir="auto" value="${esc(state.reviewName || "")}">
+    </div>
+    <div class="hp" aria-hidden="true"><label for="rvWebsite">Website</label><input type="text" id="rvWebsite" tabindex="-1" autocomplete="off"></div>
+    <p class="muted" style="font-size:.85rem">${ui("rv_privacy")}</p>
+    <div class="row" style="margin-top:0">
+      <button type="submit" class="btn"${reviews.sending ? " disabled" : ""}>${reviews.sending ? ui("rv_sending") : ui("rv_send")}</button>
+      ${reviews.error ? `<span class="warn" role="alert">${ui(reviews.error)}</span>` : ""}
+    </div>`;
+  const keep = () => { state.comment = $("rvText").value; state.reviewName = $("rvName").value; };
+  form.querySelectorAll(".scale button").forEach(b => b.addEventListener("click", () => {
+    keep(); state.rating = Number(b.dataset.n);
+    if (reviews.error === "rv_need_rating") reviews.error = null;
+    renderReviewForm();
+  }));
+  $("rvText").addEventListener("input", e => { $("rvCount").textContent = `${e.target.value.length} / ${REVIEWS.maxLength}`; });
+}
+
+$("rvForm").addEventListener("submit", async e => {
+  e.preventDefault();
+  if (reviews.sending) return;
+  state.comment = $("rvText").value.trim();
+  state.reviewName = $("rvName").value.trim();
+  if (!state.rating){ reviews.error = "rv_need_rating"; renderReviewForm(); return; }
+  if (state.comment.length < REVIEWS.minLength){ reviews.error = "rv_need_text"; renderReviewForm(); return; }
+  if ($("rvWebsite").value){ state.sent = true; renderReviewForm(); return; }
+  reviews.error = null; reviews.sending = true; renderReviewForm();
+  const body = new URLSearchParams();
+  body.set(REVIEWS.fields.text, state.comment);
+  body.set(REVIEWS.fields.rating, String(state.rating));
+  body.set(REVIEWS.fields.name, state.reviewName);
+  body.set(REVIEWS.fields.lang, state.lang);
+  try {
+    await fetch(REVIEWS.form, {method: "POST", mode: "no-cors", body});
+    saved.write("sac-review-at", Date.now());
+    state.sent = true;
+  } catch (err) {
+    reviews.error = "rv_fail";
+  }
+  reviews.sending = false;
+  renderReviewForm();
+});
+
+const darkQuery = matchMedia("(prefers-color-scheme: dark)");
+const isDark = () => document.documentElement.dataset.theme ? document.documentElement.dataset.theme === "dark" : darkQuery.matches;
+function syncThemeLabel(){ $("themeBtn").textContent = isDark() ? UI.light[L()] : UI.dark[L()]; }
+$("themeBtn").addEventListener("click", () => { document.documentElement.dataset.theme = isDark() ? "light" : "dark"; syncThemeLabel(); });
+if (darkQuery.addEventListener) darkQuery.addEventListener("change", syncThemeLabel);
+
+$("langBtn").addEventListener("click", () => {
+  state.lang = state.lang === "ar" ? "en" : "ar";
+  saved.write("sac-lang", state.lang);
+  setLanguage();
+});
+
+(function drawTicks(){
+  let lines = "";
+  for (let n = 0; n < 72; n++){
+    const rad = n * 5 * Math.PI / 180, big = n % 18 === 0, r1 = big ? 82 : (n % 2 ? 92 : 88);
+    const p = r => [(120 + r * Math.sin(rad)).toFixed(1), (120 - r * Math.cos(rad)).toFixed(1)];
+    const [x1, y1] = p(r1), [x2, y2] = p(96);
+    lines += `<line class="tk${big ? " big" : ""}" x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}"/>`;
+  }
+  $("ticks").innerHTML = lines;
+})();
+
+(function trackSection(){
+  if (!("IntersectionObserver" in window)) return;
+  const links = [...document.querySelectorAll(".nav a")];
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      links.forEach(a => a.setAttribute("aria-current", a.getAttribute("href") === "#" + entry.target.id ? "true" : "false"));
+    });
+  }, {rootMargin: "-40% 0px -55% 0px"});
+  document.querySelectorAll("main section[id]").forEach(s => observer.observe(s));
+})();
+
+setLanguage();
+loadReviews();
+</script>
+
+</body>
+</html>
