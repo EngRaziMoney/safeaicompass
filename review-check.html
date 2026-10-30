@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>SafeAICompass Reviews</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,600&family=Public+Sans:wght@400;500;600&family=IBM+Plex+Sans+Arabic:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F2F4F8;--card:#fff;--ink:#111A2C;--muted:#4D5872;--line:#E1E5ED;--accent:#13213A;--accent-soft:#F6EFDF;--brass:#8A6413}
+@media (prefers-color-scheme:dark){:root{--bg:#0A1220;--card:#101A2D;--ink:#E9EDF5;--muted:#9AA6BE;--line:#22304B;--accent:#E2B456;--accent-soft:#152139;--brass:#E2B456}select,textarea,input[type=text]{background:#152139!important;color:#E9EDF5}.filters button.on{color:#0A1220!important;background:#E2B456!important;border-color:#E2B456!important}.btn{color:#0A1220!important}.btn.ghost{color:#E2B456!important}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Public Sans","Segoe UI",system-ui,sans-serif;font-size:15px;line-height:1.55}
+.wrap{max-width:860px;margin:0 auto;padding:40px 20px 80px}
+header .brand{font-weight:600;letter-spacing:.08em;color:var(--brass);font-size:14px;text-transform:uppercase}
+h1{font-family:"Source Serif 4",Georgia,serif;font-size:32px;font-weight:600;margin:6px 0 4px}
+.sub{color:var(--muted);margin:0 0 28px}
+.summary{display:flex;gap:28px;flex-wrap:wrap;padding:20px 22px;background:var(--card);border:1px solid var(--line);border-radius:10px;margin-bottom:22px}
+.summary .num{font-size:26px;font-weight:600}
+.summary .lbl{color:var(--muted);font-size:13px}
+.bars{flex:1;min-width:220px}
+.bar{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--muted);margin:3px 0}
+.bar .t{flex:1;height:6px;background:var(--line);border-radius:3px;overflow:hidden}
+.bar .f{height:100%;background:var(--accent)}
+.filters{display:flex;gap:8px;margin-bottom:16px}
+.filters button{font:inherit;font-size:13px;padding:6px 14px;border:1px solid var(--line);background:var(--card);border-radius:999px;cursor:pointer;color:var(--ink)}
+.filters button.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.list{display:grid;gap:12px}
+.rev{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px 18px}
+.rev .top{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;font-size:13px;color:var(--muted)}
+.rev .who{color:var(--ink);font-weight:500}
+.rev .rate{font-weight:600;color:var(--accent)}
+.rev p{margin:8px 0 0}
+.rev[dir=rtl]{font-family:"IBM Plex Sans Arabic","Public Sans",sans-serif}
+.check{margin-top:44px;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:24px}
+.check h2{margin:0 0 4px;font-size:20px;font-weight:600}
+.check .note{color:var(--muted);margin:0 0 18px;font-size:14px}
+.q{margin-bottom:18px}
+.q label.h{display:block;font-weight:500;margin-bottom:8px}
+.opts{display:flex;flex-wrap:wrap;gap:8px}
+.opts label{border:1px solid var(--line);border-radius:8px;padding:7px 12px;cursor:pointer;font-size:14px}
+.opts input{margin-right:6px}
+select,textarea,input[type=text]{width:100%;font:inherit;padding:9px 11px;border:1px solid var(--line);border-radius:8px;background:#fff}
+textarea{min-height:70px;resize:vertical}
+.btn{font:inherit;font-weight:500;background:var(--accent);color:#fff;border:0;border-radius:8px;padding:10px 18px;cursor:pointer}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.err{color:#a33;font-size:13px;margin-top:8px;min-height:1em}
+.reveal{display:none;margin-top:24px;border-top:1px solid var(--line);padding-top:22px}
+.reveal h3{font-size:22px;margin:0 0 8px}
+.reveal .big{background:var(--accent-soft);border-radius:8px;padding:14px 16px;margin:0 0 18px}
+.reveal ol{padding-left:20px;margin:0 0 18px}
+.reveal li{margin-bottom:8px}
+.yours{font-size:14px;background:var(--bg);border-radius:8px;padding:12px 14px;white-space:pre-wrap;margin-bottom:12px}
+footer{margin-top:40px;color:var(--muted);font-size:12px;text-align:center}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <div class="brand">SafeAICompass</div>
+  <h1>What people are saying</h1>
+  <p class="sub">Feedback from students, teachers and parents who used SafeAICompass.</p>
+</header>
+
+<section class="summary" id="summary"></section>
+
+<div class="filters">
+  <button class="on" data-f="all">All</button>
+  <button data-f="EN">English</button>
+  <button data-f="AR">العربية</button>
+</div>
+<div class="list" id="list"></div>
+
+<section class="check" id="check">
+  <h2>Quick check before you go</h2>
+  <p class="note">Answer honestly. There is no penalty for a wrong guess.</p>
+  <form id="form">
+    <div class="q">
+      <label class="h" for="sname">Your name</label>
+      <input type="text" id="sname" autocomplete="off">
+    </div>
+    <div class="q">
+      <label class="h">How many of these reviews do you think were written by real people?</label>
+      <div class="opts">
+        <label><input type="radio" name="q1" value="All of them">All of them</label>
+        <label><input type="radio" name="q1" value="Most of them">Most of them</label>
+        <label><input type="radio" name="q1" value="About half">About half</label>
+        <label><input type="radio" name="q1" value="A few">A few</label>
+        <label><input type="radio" name="q1" value="None of them">None of them</label>
+      </div>
+    </div>
+    <div class="q">
+      <label class="h" for="q2">Which review felt the most real to you?</label>
+      <select id="q2"></select>
+    </div>
+    <div class="q">
+      <label class="h" for="q3">What made you decide? (one or two sentences)</label>
+      <textarea id="q3"></textarea>
+    </div>
+    <button class="btn" type="submit">Submit my answers</button>
+    <div class="err" id="err"></div>
+  </form>
+
+  <div class="reveal" id="reveal">
+    <h3>Reveal</h3>
+    <p class="big"><strong>None of these reviews are real.</strong> All of them were written by an AI (Claude) for this exercise. No real student, teacher or parent wrote any of them. This page is a test and will be taken down.</p>
+    <p><strong>Clues you could have spotted:</strong></p>
+    <ol>
+      <li><strong>Too tidy.</strong> Nearly every review is 4 or 5 out of 5. The few complaints are small, polite and useful, like a to-do list for the developers. Real review sections usually include angry, off-topic or confusing ones too.</li>
+      <li><strong>Even pacing.</strong> One or two reviews arrive almost every day, with no busy days and no quiet weeks.</li>
+      <li><strong>Same shape.</strong> Most reviews are one or two sentences of similar length. Real people range from one word to a full paragraph.</li>
+      <li><strong>No way to verify.</strong> Only a first name and initial. No photos, no links, no "verified user" check. Anyone can type a name.</li>
+      <li><strong>Each one makes a point.</strong> Every review touches a different feature (quiz, Arabic version, design, sources). That spread looks planned, not random.</li>
+      <li><strong>Fake casualness.</strong> Lowercase, "lol" and "tho" were added on purpose to look human. Informal style is easy to fake.</li>
+    </ol>
+    <p><strong>The lesson:</strong> AI can now write text that looks human, and you usually cannot tell from one review alone. Look at the whole set for patterns, check whether reviewers can be verified, and trust a source less when it only says good things about itself.</p>
+    <p><strong>Your answers</strong> (copy and send these to your instructor):</p>
+    <div class="yours" id="yours"></div>
+    <button class="btn ghost" id="copy" type="button">Copy my answers</button>
+    <span class="err" id="copymsg" style="color:var(--muted)"></span>
+  </div>
+</section>
+
+<footer><a href="./" style="color:inherit">SafeAICompass</a></footer>
+</div>
+
+<script>
+const R = [{"name": "Tariq Y.", "role": "Parent", "rating": 5, "lang": "EN", "text": "Our family went through it together on the weekend. Good conversation starter with the kids.", "date": "2026-10-29"}, {"name": "أروى ب.", "role": "معلمة", "rating": 4, "lang": "AR", "text": "أنصح فيه للمدارس، مع إضافة دليل للمعلم يكون أفضل", "date": "2026-10-29"}, {"name": "Saud K.", "role": "Engineer", "rating": 3, "lang": "EN", "text": "Good starting point, but a few claims would be stronger with linked sources.", "date": "2026-10-28"}, {"name": "رهف ج.", "role": "طالبة جامعية", "rating": 5, "lang": "AR", "text": "أحلى شي إن المحتوى قصير ومباشر، خلصته في جلسة وحدة", "date": "2026-10-28"}, {"name": "بندر ع.", "role": "ولي أمر", "rating": 4, "lang": "AR", "text": "محتوى ممتاز للأبناء، ياليت يكون فيه فيديو قصير يلخص كل قسم", "date": "2026-10-27"}, {"name": "Layan M.", "role": "High school student", "rating": 4, "lang": "EN", "text": "i liked the myth vs fact cards, easy to remember", "date": "2026-10-27"}, {"name": "Ziad H.", "role": "University student", "rating": 2, "lang": "EN", "text": "Content is fine but the quiz button didn't work on Safari for me. Had to switch to Chrome.", "date": "2026-10-26"}, {"name": "Amal S.", "role": "Teacher", "rating": 5, "lang": "EN", "text": "Clear learning goals at the start of each section. Easy to plan a lesson around it.", "date": "2026-10-26"}, {"name": "Mishal A.", "role": "High school student", "rating": 5, "lang": "EN", "text": "The examples about AI-generated voice scams were eye opening. Told my mom about it right away", "date": "2026-10-25"}, {"name": "شهد ن.", "role": "طالبة ثانوي", "rating": 4, "lang": "AR", "text": "شرح واضح، بس أبي قسم عن استخدام الذكاء الاصطناعي في المذاكرة بشكل صحيح", "date": "2026-10-25"}, {"name": "ماجد ف.", "role": "معلم", "rating": 4, "lang": "AR", "text": "مناسب جداً للمرحلة الثانوية، أتمنى إضافة أوراق عمل للطلاب", "date": "2026-10-24"}, {"name": "Ghada E.", "role": "Parent", "rating": 5, "lang": "EN", "text": "Thank you for making this free. The section on kids and chatbots was very helpful.", "date": "2026-10-23"}, {"name": "Bader M.", "role": "High school student", "rating": 4, "lang": "EN", "text": "Short and to the point. Read it in like 15 min on the bus", "date": "2026-10-22"}, {"name": "لمى ك.", "role": "طالبة جامعية", "rating": 5, "lang": "AR", "text": "استفدت كثير من جزء الهلوسة في النماذج، ما كنت أعرف إنها تألف مصادر", "date": "2026-10-21"}, {"name": "Turki W.", "role": "University student", "rating": 4, "lang": "EN", "text": "Would be cool to have a dark mode. Otherwise really well put together.", "date": "2026-10-20"}, {"name": "Noura Z.", "role": "Teacher", "rating": 5, "lang": "EN", "text": "Bilingual content done properly, not just machine-translated. That matters a lot.", "date": "2026-10-19"}, {"name": "سلطان ح.", "role": "موظف", "rating": 3, "lang": "AR", "text": "فكرة ممتازة لكن بعض الصفحات تحتاج تدقيق لغوي بسيط", "date": "2026-10-18"}, {"name": "Rawan D.", "role": "High school student", "rating": 4, "lang": "EN", "text": "fun quiz!! got 8/10 the first time, the bias question got me", "date": "2026-10-17"}, {"name": "Majed L.", "role": "Parent", "rating": 5, "lang": "EN", "text": "Finally something I can show my parents too. Simple language, no jargon.", "date": "2026-10-16"}, {"name": "جود ر.", "role": "طالبة ثانوي", "rating": 4, "lang": "AR", "text": "الألوان مريحة والتصميم مو مزحوم. بس الاختبار قصير شوي", "date": "2026-10-15"}, {"name": "Ahmed J.", "role": "Software developer", "rating": 4, "lang": "EN", "text": "Accurate for a general audience. Could add a sources page so people can read further.", "date": "2026-10-14"}, {"name": "Hessa F.", "role": "University student", "rating": 5, "lang": "EN", "text": "The 'should you trust this answer' flowchart is genius. Showed it to my whole group chat", "date": "2026-10-13"}, {"name": "عبدالرحمن ي.", "role": "طالب جامعي", "rating": 5, "lang": "AR", "text": "أفضل شرح بسيط عن الذكاء الاصطناعي شفته بالعربي", "date": "2026-10-12"}, {"name": "Dana Q.", "role": "Designer", "rating": 4, "lang": "EN", "text": "Typography and spacing are really nice. Footer feels a bit empty on desktop.", "date": "2026-10-11"}, {"name": "Faisal N.", "role": "High school student", "rating": 3, "lang": "EN", "text": "It's ok. The Arabic toggle reset me to the homepage when I switched, kinda annoying", "date": "2026-10-10"}, {"name": "هيا س.", "role": "ولية أمر", "rating": 5, "lang": "AR", "text": "محتوى مفيد ومناسب للعائلة، وصلني من مجموعة المدرسة وشاركته مع أخواتي", "date": "2026-10-09"}, {"name": "Maha K.", "role": "Teacher", "rating": 5, "lang": "EN", "text": "The checklist for spotting fake content is going straight into my classroom slides.", "date": "2026-10-08"}, {"name": "Yousef B.", "role": "University student", "rating": 4, "lang": "EN", "text": "Learned about prompt injection here first, which is kind of wild. Solid project.", "date": "2026-10-08"}, {"name": "فهد ق.", "role": "طالب ثانوي", "rating": 4, "lang": "AR", "text": "حلو بس ودي لو فيه أمثلة أكثر من حياتنا اليومية", "date": "2026-10-07"}, {"name": "Abdullah S.", "role": "Engineer", "rating": 5, "lang": "EN", "text": "Nice balance between explaining how the models work and what the risks are. Didn't feel preachy.", "date": "2026-10-06"}, {"name": "ريم ع.", "role": "معلمة", "rating": 5, "lang": "AR", "text": "استخدمته مع طالباتي في حصة النشاط وكان التفاعل ممتاز. شكراً على النسخة العربية", "date": "2026-10-05"}, {"name": "Lina H.", "role": "High school student", "rating": 3, "lang": "EN", "text": "Good info but the text in some sections is a lot. Maybe more pictures or short videos?", "date": "2026-10-05"}, {"name": "Omar T.", "role": "University student", "rating": 4, "lang": "EN", "text": "clean design, not too long. some pages load a bit slow on my phone tho", "date": "2026-10-04"}, {"name": "نورة م.", "role": "طالبة جامعية", "rating": 5, "lang": "AR", "text": "الموقع مرتب وسهل، وأكثر شي عجبني قسم الخصوصية. أول مرة أفهم ليش ما لازم أحط معلوماتي في أي شات بوت", "date": "2026-10-03"}, {"name": "Khalid R.", "role": "Parent", "rating": 4, "lang": "EN", "text": "Sent this to my two kids. Good intro to AI safety. Would love a short printable version for younger ones.", "date": "2026-10-03"}, {"name": "Sara A.", "role": "High school student", "rating": 5, "lang": "EN", "text": "Honestly didn't expect to finish the whole thing but the quiz part kept me going. The deepfake section was scary in a good way lol", "date": "2026-10-02"}];
+const list = document.getElementById('list');
+function render(f){
+  list.innerHTML = '';
+  R.filter(r => f==='all' || r.lang===f).forEach(r => {
+    const d = document.createElement('article');
+    d.className = 'rev';
+    if (r.lang==='AR') d.dir = 'rtl';
+    const dt = new Date(r.date+'T12:00:00').toLocaleDateString(r.lang==='AR'?'ar-SA-u-ca-gregory':'en-GB',{day:'numeric',month:'short',year:'numeric'});
+    d.innerHTML = '<div class="top"><span><span class="who"></span> &middot; <span class="role"></span></span><span><span class="rate"></span> &middot; '+dt+'</span></div><p></p>';
+    d.querySelector('.who').textContent = r.name;
+    d.querySelector('.role').textContent = r.role;
+    d.querySelector('.rate').textContent = r.rating + '/5';
+    d.querySelector('p').textContent = r.text;
+    list.appendChild(d);
+  });
+}
+function summary(){
+  const n = R.length, avg = R.reduce((a,r)=>a+r.rating,0)/n;
+  let bars = '';
+  for (let s=5;s>=1;s--){
+    const c = R.filter(r=>r.rating===s).length;
+    bars += '<div class="bar"><span>'+s+'</span><div class="t"><div class="f" style="width:'+(c/n*100)+'%"></div></div><span>'+c+'</span></div>';
+  }
+  document.getElementById('summary').innerHTML =
+    '<div><div class="num">'+avg.toFixed(1)+'/5</div><div class="lbl">Average rating</div></div>'+
+    '<div><div class="num">'+n+'</div><div class="lbl">Reviews</div></div>'+
+    '<div class="bars">'+bars+'</div>';
+}
+document.querySelectorAll('.filters button').forEach(b => b.onclick = () => {
+  document.querySelectorAll('.filters button').forEach(x=>x.classList.remove('on'));
+  b.classList.add('on'); render(b.dataset.f);
+});
+const sel = document.getElementById('q2');
+sel.innerHTML = '<option value="">Choose a review</option>' + R.map((r,i)=>'<option value="'+i+'"></option>').join('');
+R.forEach((r,i)=>{ const t=r.text; sel.options[i+1].textContent = r.name+' - '+(t.length>50?t.slice(0,50)+'...':t); });
+
+let answers = '';
+document.getElementById('form').addEventListener('submit', e => {
+  e.preventDefault();
+  const name = document.getElementById('sname').value.trim();
+  const q1 = document.querySelector('input[name=q1]:checked');
+  const q2 = sel.value;
+  const q3 = document.getElementById('q3').value.trim();
+  const err = document.getElementById('err');
+  if (!name || !q1 || q2==='' ){ err.textContent = 'Please fill in your name and the first two questions.'; return; }
+  err.textContent = '';
+  const r = R[+q2];
+  answers = 'Name: '+name+'\nReal reviews guess: '+q1.value+'\nMost real-looking: '+r.name+' ("'+r.text+'")\nReason: '+(q3||'-')+'\nCorrect answer: None of them (all AI-written)';
+  document.getElementById('yours').textContent = answers;
+  document.querySelectorAll('#form input, #form select, #form textarea, #form button').forEach(x=>x.disabled=true);
+  const rv = document.getElementById('reveal'); rv.style.display='block';
+  rv.scrollIntoView({behavior:'smooth'});
+});
+document.getElementById('copy').addEventListener('click', async () => {
+  const m = document.getElementById('copymsg');
+  try { await navigator.clipboard.writeText(answers); m.textContent = ' Copied.'; }
+  catch(e){ m.textContent = ' Copy blocked. Select the text above and copy it by hand.'; }
+});
+summary(); render('all');
+</script>
+</body>
+</html>
